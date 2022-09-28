@@ -3,5 +3,6 @@ A Studio Ghibli-themed productivity application with a pomodoro timer, to-do lis
 
 ## **Technologies**
 - React
+- Tailwind
 
 ## **Installation**
