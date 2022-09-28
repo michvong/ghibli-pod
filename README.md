@@ -7,3 +7,4 @@ A Studio Ghibli-themed productivity application with a pomodoro timer, to-do lis
 
 ## **Installation**
 npm install -D tailwindcss
+npm install react-draggable
