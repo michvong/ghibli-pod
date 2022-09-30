@@ -3,8 +3,14 @@ import { useState } from 'react';
 
 export default function Timer() {
     const DEFAULT_MINUTES = "25";
-    const [minutes, setMinutes] = useState("25");
-    const [seconds, setSeconds] = useState("00");
+    let currentSeconds = 0;
+
+    const [minutes, setMinutes] = useState(25);
+    const [seconds, setSeconds] = useState(0);
+
+    function pad(num) {
+        return (num < 10) ? ("0" + num) : num;
+    }
 
     const handleMinutesChange = (minutes) => {
         if (parseInt(minutes) > 999 || parseInt(minutes) < 1) {
@@ -22,17 +28,31 @@ export default function Timer() {
 
     }
 
-    // const Timer = () => {
-    // }
+    /* idea: showing the actual countdown
+    1. after 1 minute, decrement minutes and set seconds to 59
+    2. after 1 second, decrement seconds by 1
+
+    1.
+    */
+    const onTimerClick = () => {
+        let minToSec = minutes * 60;
+        onTimerStop(minToSec);
+    }
+    
+    const onTimerStop = (maxSeconds) => {
+        console.log("Current second is: " + currentSeconds);
+        if (currentSeconds === maxSeconds) {
+            return;
+        }
+
+        currentSeconds++;
+        setTimeout(onTimerStop, 1000, maxSeconds);
+    }
 
     /* idea:
     1. let user input number of minutes for timer (default 25)
     2. when user starts timer, start counting down seconds and minutes
     3. once timer is done, play a sound and add to # of sessions completed 
-    
-    1. click on header
-    2. indicator for user to type (input)
-    3.
     */
 
     return (
@@ -41,9 +61,9 @@ export default function Timer() {
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> */}
 
             <div class="flex justify-between text-white">
-                <h3 class="mt-3 text-5xl font-bold text-white">{minutes}:{seconds}</h3>
+                <h3 class="mt-3 text-5xl font-bold text-white">{minutes}:{pad(seconds)}</h3>
                 <div class="flex space-x-1">
-                    <button type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <button onClick={onTimerClick} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg
                             xmlns="http://www.w3.org/2000/svg" 
                             width="18" height="18" 
@@ -106,7 +126,6 @@ export default function Timer() {
                     value={minutes}
                     min={0}
                     max={999}
-
                     onChange={(e) => handleMinutesChange(e.target.value)}
                 />
             </div>
