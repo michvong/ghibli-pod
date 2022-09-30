@@ -2,12 +2,20 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function Timer() {
+    const DEFAULT_MINUTES = "25";
     const [minutes, setMinutes] = useState("25");
     const [seconds, setSeconds] = useState("00");
 
     const handleMinutesChange = (minutes) => {
-        console.log("The minutes were changed to " + minutes);
-        setMinutes(minutes);
+        if (parseInt(minutes) > 999 || parseInt(minutes) < 1) {
+            console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
+            setMinutes(DEFAULT_MINUTES);
+            console.log("Minutes is now " + DEFAULT_MINUTES);
+        
+        } else {
+            console.log("Minutes is now " + minutes);
+            setMinutes(minutes);
+        }
     }
     
     const onSettingsClick = () => {
@@ -36,7 +44,7 @@ export default function Timer() {
                 <h3 class="mt-3 text-5xl font-bold text-white">{minutes}:{seconds}</h3>
                 <div class="flex space-x-1">
                     <button type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <svg 
+                        <svg
                             xmlns="http://www.w3.org/2000/svg" 
                             width="18" height="18" 
                             viewBox="0 0 24 24" 
@@ -91,11 +99,17 @@ export default function Timer() {
                     </button>
             </div>
             
-            {/* <div class="flex justify-between">
+            <div class="flex justify-between mt-4">
                 <input
+                    name="minutes"
+                    type="number"
+                    value={minutes}
+                    min={0}
+                    max={999}
 
+                    onChange={(e) => handleMinutesChange(e.target.value)}
                 />
-            </div> */}
+            </div>
         </div>
     )
 }
