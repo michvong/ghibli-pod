@@ -9,6 +9,10 @@ export default function Timer() {
         console.log("The minutes were changed to " + minutes);
         setMinutes(minutes);
     }
+    
+    const onSettingsClick = () => {
+
+    }
 
     // const Timer = () => {
     // }
@@ -24,30 +28,14 @@ export default function Timer() {
     */
 
     return (
-        <div class="block p-8 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-10 h-10 text-blue-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-            >
-                <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path
-                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                />
-                <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                />
-            </svg>
+        <div class="block px-8 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
+            <h3 class="text-xl text-white">Timer</h3>
+            {/* <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> */}
 
             <div class="flex justify-between text-white">
-                <h3 class="mt-3 text-4xl font-bold text-white">{minutes}:{seconds}</h3>
+                <h3 class="mt-3 text-5xl font-bold text-white">{minutes}:{seconds}</h3>
                 <div class="flex space-x-1">
-                    <button type="button" class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <button type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             width="18" height="18" 
@@ -78,9 +66,36 @@ export default function Timer() {
                 </div>
             </div>
 
-            <p class="mt-4 text-sm text-gray-300">
-                You've completed _ sessions to this date!
-            </p>
+            <div class="flex justify-between">
+                <p class="mt-4 text-sm text-gray-300">
+                    You've completed _ sessions to this date!
+                </p>
+
+                <button type="button" class="mt-4">
+                    <svg 
+                        class="hover:stroke-blue-500 active:stroke-blue-800"
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="15" height="15" 
+                        viewBox="0 0 24 24" 
+                        fill="none" stroke="#ffffff" 
+                        stroke-width="2" stroke-linecap="round" 
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path 
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                        >
+                        </path>
+                    </svg>
+                        <span class="sr-only">restart</span>
+                    </button>
+            </div>
+            
+            {/* <div class="flex justify-between">
+                <input
+
+                />
+            </div> */}
         </div>
     )
 }
