@@ -51,6 +51,7 @@ export default function Timer() {
     const onRestartClick = () => {
         if (isRunning !== true) {
             setDisplayMinutes(minutes);
+            setDisplaySeconds(0);
         } 
     }
 
