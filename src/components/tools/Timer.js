@@ -55,8 +55,6 @@ export default function Timer() {
             displaySeconds = 59;
             minutes--;
             setMinutes(minutes);
-        } else if (seconds === 59) {
-            displaySeconds = 59;
         }
         
         if (seconds !== 60) {
@@ -66,27 +64,11 @@ export default function Timer() {
         currentSeconds++;
         seconds--;
         setDisplaySeconds(displaySeconds);
-        
-        // if (currentSeconds === 0) {
-            //     minutes--;
-            //     setMinutes(minutes);
-            // }
-            
-            
-            // if (seconds === 0 && currentSeconds !== maxSeconds) {
-                //     setDisplaySeconds(DISPLAY_SECONDS_RESET);
-        //     minutes--;
-        //     setMinutes(minutes);
-        //     seconds = SECONDS_RESET;
-        // }
-        
+         
         if (currentSeconds === maxSeconds) {
             console.log("Timer done!");
             return;
         }
-        console.log("currentSeconds is: " + currentSeconds);
-        console.log("seconds is: " + seconds);
-        console.log("display seconds is: " + displaySeconds);
         
         setTimeout(onTimerStop, 1000, maxSeconds);
     }
