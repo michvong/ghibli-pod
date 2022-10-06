@@ -6,6 +6,7 @@ export default function Timer() {
     const SECONDS_RESET = 60;
     const DISPLAY_SECONDS_RESET = 59;
     let currentSeconds = 0;
+    let isRunning = false;
 
     let [minutes, setMinutes] = useState(25);
     let [seconds, setSeconds] = useState(60);
@@ -34,17 +35,19 @@ export default function Timer() {
 
     }
 
-    /* idea: showing the actual countdown
-    1. after 1 minute, decrement minutes and set seconds to 59
-    2. after 1 second, decrement seconds by 1
-
-    1.
+    /* idea:
+    - when user clicks restart, timer should go back to initial value
+    - this button will ONLY work if timer is 0 and NOT currently running (use boolean?)
     */
+    const onRestartClick = () => {
+        if (isRunning !== true) {
+            setDisplayMinutes(minutes);
+        } 
+    }
+
     const onTimerClick = () => {
+        isRunning = true;
         let minToSec = minutes * 60;
-        // console.log("Max seconds: " + minToSec);
-        // console.log("Starting minutes: " + minutes);
-        // console.log("Starting seconds: " + seconds);
         onTimerStop(minToSec);
     }
     
@@ -76,7 +79,9 @@ export default function Timer() {
         setTimeout(onTimerStop, 1000, maxSeconds);
     }
     
-    /* idea:
+    /* idea: after work timer completes, transition to break
+    - if less than 3 sessions, short break
+    - if more than 4 sessions, long break
     1. let user input number of minutes for timer (default 25)
     2. when user starts timer, start counting down seconds and minutes
     3. once timer is done, play a sound and add to # of sessions completed 
