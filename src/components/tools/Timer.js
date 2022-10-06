@@ -10,6 +10,7 @@ export default function Timer() {
     let [minutes, setMinutes] = useState(25);
     let [seconds, setSeconds] = useState(60);
     let [displaySeconds, setDisplaySeconds] = useState(0);
+    let [displayMinutes, setDisplayMinutes] = useState(25);
 
     function pad(num) {
         return (num < 10) ? ("0" + num) : num;
@@ -19,11 +20,13 @@ export default function Timer() {
         if (parseInt(minutes) > 999 || parseInt(minutes) < 1) {
             console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
             setMinutes(DEFAULT_MINUTES);
+            setDisplayMinutes(DEFAULT_MINUTES);
             console.log("Minutes is now " + DEFAULT_MINUTES);
         
         } else {
             console.log("Minutes is now " + minutes);
             setMinutes(minutes);
+            setDisplayMinutes(minutes);
         }
     }
     
@@ -53,8 +56,8 @@ export default function Timer() {
 
         if (seconds === 60) {
             displaySeconds = 59;
-            minutes--;
-            setMinutes(minutes);
+            displayMinutes--;
+            setDisplayMinutes(displayMinutes);
         }
         
         if (seconds !== 60) {
@@ -85,7 +88,7 @@ export default function Timer() {
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> */}
 
             <div class="flex justify-between text-white">
-                <h3 class="mt-3 text-5xl font-bold text-white">{minutes}:{pad(displaySeconds)}</h3>
+                <h3 class="mt-3 text-5xl font-bold text-white">{displayMinutes}:{pad(displaySeconds)}</h3>
                 <div class="flex space-x-1">
                     <button onClick={onTimerClick} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg
