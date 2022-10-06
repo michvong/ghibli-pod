@@ -4,6 +4,7 @@ import { useState } from 'react';
 export default function Timer() {
     const DEFAULT_MINUTES = "25";
     const SECONDS_RESET = 60;
+    const DISPLAY_SECONDS_RESET = 59;
     let currentSeconds = 0;
 
     let [minutes, setMinutes] = useState(25);
@@ -38,42 +39,58 @@ export default function Timer() {
     */
     const onTimerClick = () => {
         let minToSec = minutes * 60;
-        console.log("Max seconds: " + minToSec);
-        console.log("Starting minutes: " + minutes);
-        console.log("Starting seconds: " + seconds);
+        // console.log("Max seconds: " + minToSec);
+        // console.log("Starting minutes: " + minutes);
+        // console.log("Starting seconds: " + seconds);
         onTimerStop(minToSec);
     }
     
     const onTimerStop = (maxSeconds) => {
-        console.log("currentSeconds is: " + currentSeconds);
-        console.log("display seconds is: " + seconds);
+        if (seconds === 0) {
+            displaySeconds = 59;
+            seconds = 60;
+        }
 
-        // initial run
-        if (currentSeconds === 0) {
+        if (seconds === 60) {
             displaySeconds = 59;
             minutes--;
+            setMinutes(minutes);
+        } else if (seconds === 59) {
+            displaySeconds = 59;
         }
-        setMinutes(minutes);
-
+        
+        if (seconds !== 60) {
+            displaySeconds--;
+        }
+        
         currentSeconds++;
         seconds--;
-
-        if (seconds === 0 && currentSeconds !== maxSeconds) {
-            setDisplaySeconds(SECONDS_RESET);
-            minutes--;
-        } else {
-            setDisplaySeconds(displaySeconds--);
-        }
-
-    
+        setDisplaySeconds(displaySeconds);
+        
+        // if (currentSeconds === 0) {
+            //     minutes--;
+            //     setMinutes(minutes);
+            // }
+            
+            
+            // if (seconds === 0 && currentSeconds !== maxSeconds) {
+                //     setDisplaySeconds(DISPLAY_SECONDS_RESET);
+        //     minutes--;
+        //     setMinutes(minutes);
+        //     seconds = SECONDS_RESET;
+        // }
+        
         if (currentSeconds === maxSeconds) {
             console.log("Timer done!");
             return;
         }
-
+        console.log("currentSeconds is: " + currentSeconds);
+        console.log("seconds is: " + seconds);
+        console.log("display seconds is: " + displaySeconds);
+        
         setTimeout(onTimerStop, 1000, maxSeconds);
     }
-
+    
     /* idea:
     1. let user input number of minutes for timer (default 25)
     2. when user starts timer, start counting down seconds and minutes
