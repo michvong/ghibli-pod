@@ -30,6 +30,14 @@ export default function Timer() {
             setDisplayMinutes(minutes);
         }
     }
+
+    const handleShortMinsChange = () => {
+
+    }
+
+    const handleLongMinsChange = () => {
+        
+    }
     
     const onSettingsClick = () => {
 
@@ -109,7 +117,7 @@ export default function Timer() {
                         <span class="sr-only">play</span>
                     </button>
 
-                    <button type="button" class="mt-4">
+                    <button onClick={onRestartClick} type="button" class="mt-4">
                         <svg 
                             class="hover:stroke-blue-500 active:stroke-blue-800" 
                             xmlns="http://www.w3.org/2000/svg" 
@@ -154,6 +162,24 @@ export default function Timer() {
             <div class="flex justify-between mt-4">
                 <input
                     name="minutes"
+                    type="number"
+                    value={minutes}
+                    min={0}
+                    max={999}
+                    onChange={(e) => handleMinutesChange(e.target.value)}
+                />
+
+                <input
+                    name="short-break"
+                    type="number"
+                    value={minutes}
+                    min={0}
+                    max={999}
+                    onChange={(e) => handleMinutesChange(e.target.value)}
+                />
+
+                <input
+                    name="long-break"
                     type="number"
                     value={minutes}
                     min={0}
