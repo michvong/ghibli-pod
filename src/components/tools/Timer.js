@@ -5,6 +5,7 @@ export default function Timer() {
     const DEFAULT_MINUTES = "25";
     const SECONDS_RESET = 60;
     const DISPLAY_SECONDS_RESET = 59;
+
     let currentSeconds = 0;
     let isRunning = false;
 
@@ -36,7 +37,7 @@ export default function Timer() {
     }
 
     const handleLongMinsChange = () => {
-        
+
     }
     
     const onSettingsClick = () => {
@@ -161,29 +162,32 @@ export default function Timer() {
             
             <div class="flex justify-between mt-4">
                 <input
+                    class="pl-1"
                     name="minutes"
                     type="number"
                     value={minutes}
                     min={0}
-                    max={999}
+                    max={999999}
                     onChange={(e) => handleMinutesChange(e.target.value)}
                 />
 
                 <input
+                    class="pl-1"
                     name="short-break"
                     type="number"
                     value={minutes}
                     min={0}
-                    max={999}
+                    max={999999}
                     onChange={(e) => handleMinutesChange(e.target.value)}
                 />
 
                 <input
+                    class="pl-1"
                     name="long-break"
                     type="number"
                     value={minutes}
                     min={0}
-                    max={999}
+                    max={999999}
                     onChange={(e) => handleMinutesChange(e.target.value)}
                 />
             </div>
