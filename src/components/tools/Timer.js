@@ -11,7 +11,7 @@ export default function Timer() {
     const SECONDS_RESET = 60;
     const DISPLAY_SECONDS_RESET = 59;
 
-    let currentSeconds = 0;
+    let timerId;
     
     let [minutes, setMinutes] = useState(25);
     let [seconds, setSeconds] = useState(60);
@@ -62,24 +62,28 @@ export default function Timer() {
 
     const onTimerToggle = () => {
         if (!isPlaying) {
+            isPlaying = true;
             setIsPlaying(true);
             onPlayHandler();
         } else {
+            isPlaying = false;
             setIsPlaying(false);
             onPauseHandler();
         }
     }
 
     const onPlayHandler = () => {
-        let minToSec = minutes * 60;
-        timerHandler(minToSec);
+        const minToSec = minutes * 60;
+        const minToMillisec = minutes * 60000;
+        timerId = setInterval(timerHandler, 1000, minToMillisec);
+        setTimeout(() => { clearInterval(timerId);  }, minToMillisec);
     }
 
     const onPauseHandler = () => {
         console.log("Timer was paused.");
     }
     
-    const timerHandler = (maxSeconds) => {
+    const timerHandler = () => {
         if (seconds === 0) {
             displaySeconds = 59;
             seconds = 60;
@@ -95,16 +99,8 @@ export default function Timer() {
             displaySeconds--;
         }
         
-        currentSeconds++;
         seconds--;
         setDisplaySeconds(displaySeconds);
-         
-        if (currentSeconds === maxSeconds) {
-            console.log("Timer done!");
-            return;
-        }
-        
-        setTimeout(timerHandler, 1000, maxSeconds);
     }
     
     /* idea: after work timer completes, transition to break
