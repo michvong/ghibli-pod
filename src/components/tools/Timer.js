@@ -12,12 +12,12 @@ export default function Timer() {
     const DISPLAY_SECONDS_RESET = 59;
 
     let currentSeconds = 0;
-    let isRunning = false;
-
+    
     let [minutes, setMinutes] = useState(25);
     let [seconds, setSeconds] = useState(60);
     let [displaySeconds, setDisplaySeconds] = useState(0);
     let [displayMinutes, setDisplayMinutes] = useState(25);
+    let [isPlaying, setIsPlaying] = useState(false);
 
     function pad(num) {
         return (num < 10) ? ("0" + num) : num;
@@ -54,16 +54,29 @@ export default function Timer() {
     - this button will ONLY work if timer is 0 and NOT currently running (use boolean?)
     */
     const onRestartClick = () => {
-        if (isRunning !== true) {
+        if (isPlaying !== true) {
             setDisplayMinutes(minutes);
             setDisplaySeconds(0);
         } 
     }
 
-    const onPlayClick = () => {
-        isRunning = true;
+    const onTimerToggle = () => {
+        if (!isPlaying) {
+            setIsPlaying(true);
+            onPlayHandler();
+        } else {
+            setIsPlaying(false);
+            onPauseHandler();
+        }
+    }
+
+    const onPlayHandler = () => {
         let minToSec = minutes * 60;
         timerHandler(minToSec);
+    }
+
+    const onPauseHandler = () => {
+        console.log("Timer was paused.");
     }
     
     const timerHandler = (maxSeconds) => {
@@ -110,8 +123,8 @@ export default function Timer() {
             <div class="flex justify-between text-white">
                 <h3 class="mt-3 text-5xl font-bold text-white">{displayMinutes}:{pad(displaySeconds)}</h3>
                 <div class="flex space-x-1">
-                    <button onClick={onPlayClick} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <Play />
+                    <button onClick={onTimerToggle} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        {isPlaying? <Pause /> : <Play />}
                     </button>
 
                     <button onClick={onRestartClick} type="button" class="mt-4">
