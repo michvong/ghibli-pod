@@ -73,7 +73,6 @@ export default function Timer() {
     }
 
     const onPlayHandler = () => {
-        const minToSec = minutes * 60;
         const minToMillisec = minutes * 60000;
         timerId = setInterval(timerHandler, 1000, minToMillisec);
         setTimeout(() => { clearInterval(timerId);  }, minToMillisec);
