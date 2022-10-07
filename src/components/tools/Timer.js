@@ -112,12 +112,10 @@ export default function Timer() {
                 <div class="flex space-x-1">
                     <button onClick={onTimerClick} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <Play />
-                        <span class="sr-only">play</span>
                     </button>
 
                     <button onClick={onRestartClick} type="button" class="mt-4">
                         <Restart />
-                        <span class="sr-only">restart</span>
                     </button>
                 </div>
             </div>
