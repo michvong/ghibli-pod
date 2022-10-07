@@ -60,13 +60,13 @@ export default function Timer() {
         } 
     }
 
-    const onTimerClick = () => {
+    const onPlayClick = () => {
         isRunning = true;
         let minToSec = minutes * 60;
-        onTimerStop(minToSec);
+        timerHandler(minToSec);
     }
     
-    const onTimerStop = (maxSeconds) => {
+    const timerHandler = (maxSeconds) => {
         if (seconds === 0) {
             displaySeconds = 59;
             seconds = 60;
@@ -91,7 +91,7 @@ export default function Timer() {
             return;
         }
         
-        setTimeout(onTimerStop, 1000, maxSeconds);
+        setTimeout(timerHandler, 1000, maxSeconds);
     }
     
     /* idea: after work timer completes, transition to break
@@ -110,7 +110,7 @@ export default function Timer() {
             <div class="flex justify-between text-white">
                 <h3 class="mt-3 text-5xl font-bold text-white">{displayMinutes}:{pad(displaySeconds)}</h3>
                 <div class="flex space-x-1">
-                    <button onClick={onTimerClick} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <button onClick={onPlayClick} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <Play />
                     </button>
 
