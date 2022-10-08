@@ -1,41 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 import Play from '../../icons/Play';
 import Pause from '../../icons/Pause';
-import Restart from '../../icons/Restart';
-import Settings from '../../icons/Settings';
 
 export default function Timer() {
-    const DEFAULT_MINUTES = "25";
-    const SECONDS_RESET = 60;
-    const DISPLAY_SECONDS_RESET = 59;
+    const DEFAULT_TIMER_LENGTH = 120;
+    // const DEFAULT_TIMER_LENGTH = 25 * 60;
 
-    let timerId;
+    const [timerLengthInSeconds, setTimerLengthInSeconds] = useState(DEFAULT_TIMER_LENGTH);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [intervalId, setIntervalId] = useState();
+    const [formattedTime, setFormattedTime] = useState("2:00");
+
+    useEffect(() => {
+        if (timerLengthInSeconds === 0) {
+            setIsPlaying(false);
+            clearInterval(intervalId);
+            setTimerLengthInSeconds(DEFAULT_TIMER_LENGTH);
+        }
+    }, [timerLengthInSeconds, intervalId]);
+
+    useEffect(() => {
+        setFormattedTime(getFormattedTime());
+    });
+
     
-    let [minutes, setMinutes] = useState(25);
-    let [seconds, setSeconds] = useState(60);
-    let [displaySeconds, setDisplaySeconds] = useState(0);
-    let [displayMinutes, setDisplayMinutes] = useState(25);
-    let [isPlaying, setIsPlaying] = useState(false);
-
     function pad(num) {
         return (num < 10) ? ("0" + num) : num;
     }
 
-    const handleMinutesChange = (minutes) => {
-        if (parseInt(minutes) > 999 || parseInt(minutes) < 1) {
-            console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-            setMinutes(DEFAULT_MINUTES);
-            setDisplayMinutes(DEFAULT_MINUTES);
-            console.log("Minutes is now " + DEFAULT_MINUTES);
+    // const handleMinutesChange = (minutes) => {
+    //     if (parseInt(minutes) > 999 || parseInt(minutes) < 1) {
+    //         console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
+    //         setMinutes(DEFAULT_TIMER_LENGTH);
+    //         setDisplayMinutes(DEFAULT_TIMER_LENGTH);
+    //         console.log("Minutes is now " + DEFAULT_TIMER_LENGTH);
         
-        } else {
-            console.log("Minutes is now " + minutes);
-            setMinutes(minutes);
-            setDisplayMinutes(minutes);
-        }
-    }
+    //     } else {
+    //         console.log("Minutes is now " + minutes);
+    //         setMinutes(minutes);
+    //         setDisplayMinutes(minutes);
+    //     }
+    // }
 
     const handleShortMinsChange = () => {
 
@@ -53,53 +60,44 @@ export default function Timer() {
     - when user clicks restart, timer should go back to initial value
     - this button will ONLY work if timer is 0 and NOT currently running (use boolean?)
     */
-    const onRestartClick = () => {
-        if (isPlaying !== true) {
-            setDisplayMinutes(minutes);
-            setDisplaySeconds(0);
-        } 
-    }
+    // const onRestartClick = () => {
+    //     if (isPlaying !== true) {
+    //         setDisplayMinutes(minutes);
+    //         setDisplaySeconds(0);
+    //     } 
+    // }
 
     const onTimerToggle = () => {
         if (!isPlaying) {
-            isPlaying = true;
-            setIsPlaying(true);
-            onPlayHandler();
+            playTimer();
         } else {
-            isPlaying = false;
-            setIsPlaying(false);
-            onPauseHandler();
+            pauseTimer();
         }
     }
-
-    const onPlayHandler = () => {
-        const minToMillisec = minutes * 60000;
-        timerId = setInterval(timerHandler, 1000, minToMillisec);
-        setTimeout(() => { clearInterval(timerId);  }, minToMillisec);
+    
+    const playTimer = () => {
+        setIsPlaying(true);
+        const timerIntervalId = setInterval(handleTimerInterval, 1000);
+        setIntervalId(timerIntervalId);
     }
-
-    const onPauseHandler = () => {
+            
+    const pauseTimer = () => {
+        setIsPlaying(false);
+        clearInterval(intervalId);
         console.log("Timer was paused.");
     }
     
-    const timerHandler = () => {
-        if (seconds === 0) {
-            displaySeconds = 59;
-            seconds = 60;
-        }
+    const handleTimerInterval = () => {
+        setTimerLengthInSeconds(timerLengthInSeconds => timerLengthInSeconds - 1);
+        getFormattedTime();
+    }
 
-        if (seconds === 60) {
-            displaySeconds = 59;
-            displayMinutes--;
-            setDisplayMinutes(displayMinutes);
-        }
-        
-        if (seconds !== 60) {
-            displaySeconds--;
-        }
-        
-        seconds--;
-        setDisplaySeconds(displaySeconds);
+    const getFormattedTime = () => {
+        const formattedMinutes = Math.floor(timerLengthInSeconds / 60);
+        const formattedSeconds = timerLengthInSeconds % 60;
+
+        // setFormattedTime(formattedTime => formattedMinutes + ":" + pad(formattedSeconds));
+        return formattedMinutes + ":" + pad(formattedSeconds);
     }
     
     /* idea: after work timer completes, transition to break
@@ -116,19 +114,20 @@ export default function Timer() {
             {/* <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> */}
 
             <div class="flex justify-between text-white">
-                <h3 class="mt-3 text-5xl font-bold text-white">{displayMinutes}:{pad(displaySeconds)}</h3>
+                <h3 class="mt-3 text-5xl font-bold text-white">{formattedTime}</h3>
+                {/* <h3 class="mt-3 text-5xl font-bold text-white">{displayMinutes}:{pad(displaySeconds)}</h3> */}
                 <div class="flex space-x-1">
                     <button onClick={onTimerToggle} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         {isPlaying? <Pause /> : <Play />}
                     </button>
 
-                    <button onClick={onRestartClick} type="button" class="mt-4">
+                    {/* <button onClick={onRestartClick} type="button" class="mt-4">
                         <Restart />
-                    </button>
+                    </button> */}
                 </div>
             </div>
 
-            <div class="flex justify-between">
+            {/* <div class="flex justify-between">
                 <p class="mt-4 text-sm text-gray-300">
                     You've completed _ sessions to this date!
                 </p>
@@ -168,7 +167,7 @@ export default function Timer() {
                     max={999999}
                     onChange={(e) => handleMinutesChange(e.target.value)}
                 />
-            </div>
+            </div> */}
         </div>
     )
 }
