@@ -95,8 +95,6 @@ export default function Timer() {
     const getFormattedTime = () => {
         const formattedMinutes = Math.floor(timerLengthInSeconds / 60);
         const formattedSeconds = timerLengthInSeconds % 60;
-
-        // setFormattedTime(formattedTime => formattedMinutes + ":" + pad(formattedSeconds));
         return formattedMinutes + ":" + pad(formattedSeconds);
     }
     
