@@ -111,11 +111,9 @@ export default function Timer() {
     return (
         <div class="block px-8 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
             <h3 class="text-xl text-white">Timer</h3>
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> */}
 
             <div class="flex justify-between text-white">
                 <h3 class="mt-3 text-5xl font-bold text-white">{formattedTime}</h3>
-                {/* <h3 class="mt-3 text-5xl font-bold text-white">{displayMinutes}:{pad(displaySeconds)}</h3> */}
                 <div class="flex space-x-1">
                     <button onClick={onTimerToggle} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         {isPlaying? <Pause /> : <Play />}
@@ -152,7 +150,7 @@ export default function Timer() {
                     class="pl-1"
                     name="short-break"
                     type="number"
-                    value={minutes}
+                    value={inputMinutes}
                     min={0}
                     max={999999}
                     onChange={(e) => handleInputMinutesChange(e.target.value)}
@@ -162,7 +160,7 @@ export default function Timer() {
                     class="pl-1"
                     name="long-break"
                     type="number"
-                    value={minutes}
+                    value={inputMinutes}
                     min={0}
                     max={999999}
                     onChange={(e) => handleInputMinutesChange(e.target.value)}
