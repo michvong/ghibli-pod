@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import Play from '../../icons/Play';
 import Pause from '../../icons/Pause';
-// import Restart from '../../icons/Restart';
+import Restart from '../../icons/Restart';
 import Settings from '../../icons/Settings'
 
 export default function Timer() {
@@ -61,12 +61,11 @@ export default function Timer() {
     - when user clicks restart, timer should go back to initial value
     - this button will ONLY work if timer is 0 and NOT currently running (use boolean?)
     */
-    // const onRestartClick = () => {
-    //     if (isPlaying !== true) {
-    //         setDisplayMinutes(minutes);
-    //         setDisplaySeconds(0);
-    //     } 
-    // }
+    const onRestartClick = () => {
+        if (isPlaying !== true) {
+            setTimerLengthInSeconds(inputMinutes * 60);
+        } 
+    }
 
     const onTimerToggle = () => {
         if (!isPlaying) {
@@ -122,9 +121,9 @@ export default function Timer() {
                         {isPlaying? <Pause /> : <Play />}
                     </button>
 
-                    {/* <button onClick={onRestartClick} type="button" class="mt-4">
+                    <button onClick={onRestartClick} type="button" class="mt-4">
                         <Restart />
-                    </button> */}
+                    </button>
                 </div>
             </div>
 
