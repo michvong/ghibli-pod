@@ -3,15 +3,19 @@ import { useState } from 'react';
 
 import Play from '../../icons/Play';
 import Pause from '../../icons/Pause';
+// import Restart from '../../icons/Restart';
+import Settings from '../../icons/Settings'
 
 export default function Timer() {
-    const DEFAULT_TIMER_LENGTH = 120;
-    // const DEFAULT_TIMER_LENGTH = 25 * 60;
+    const DEFAULT_TIMER_LENGTH = 25 * 60;
+    const DEFAULT_INPUT_MINUTES = 25;
+    const DEFAULT_FORMATTED_TIME = "25:00";
 
-    const [timerLengthInSeconds, setTimerLengthInSeconds] = useState(DEFAULT_TIMER_LENGTH);
+    const [timerLengthInSeconds, setTimerLengthInSeconds] = useState(DEFAULT_INPUT_MINUTES * 60);
     const [isPlaying, setIsPlaying] = useState(false);
     const [intervalId, setIntervalId] = useState();
-    const [formattedTime, setFormattedTime] = useState("2:00");
+    const [formattedTime, setFormattedTime] = useState(DEFAULT_FORMATTED_TIME);
+    const [inputMinutes, setInputMinutes] = useState(DEFAULT_INPUT_MINUTES);
 
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
@@ -25,24 +29,21 @@ export default function Timer() {
         setFormattedTime(getFormattedTime());
     });
 
-    
     function pad(num) {
         return (num < 10) ? ("0" + num) : num;
     }
 
-    // const handleMinutesChange = (minutes) => {
-    //     if (parseInt(minutes) > 999 || parseInt(minutes) < 1) {
-    //         console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-    //         setMinutes(DEFAULT_TIMER_LENGTH);
-    //         setDisplayMinutes(DEFAULT_TIMER_LENGTH);
-    //         console.log("Minutes is now " + DEFAULT_TIMER_LENGTH);
-        
-    //     } else {
-    //         console.log("Minutes is now " + minutes);
-    //         setMinutes(minutes);
-    //         setDisplayMinutes(minutes);
-    //     }
-    // }
+    const handleInputMinutesChange = (minutes) => {
+        if (minutes > 999 || minutes < 1) {
+            console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
+            setTimerLengthInSeconds(DEFAULT_TIMER_LENGTH);
+            setInputMinutes(DEFAULT_FORMATTED_TIME);
+        } else {
+            console.log("Minutes is now " + minutes);
+            setTimerLengthInSeconds(minutes * 60);
+            setInputMinutes(minutes);
+        }
+    }
 
     const handleShortMinsChange = () => {
 
@@ -127,7 +128,7 @@ export default function Timer() {
                 </div>
             </div>
 
-            {/* <div class="flex justify-between">
+            <div class="flex justify-between">
                 <p class="mt-4 text-sm text-gray-300">
                     You've completed _ sessions to this date!
                 </p>
@@ -142,32 +143,32 @@ export default function Timer() {
                     class="pl-1"
                     name="minutes"
                     type="number"
-                    value={minutes}
+                    value={inputMinutes}
                     min={0}
                     max={999999}
-                    onChange={(e) => handleMinutesChange(e.target.value)}
+                    onChange={(e) => handleInputMinutesChange(e.target.value)}
                 />
 
-                <input
+                {/* <input
                     class="pl-1"
                     name="short-break"
                     type="number"
                     value={minutes}
                     min={0}
                     max={999999}
-                    onChange={(e) => handleMinutesChange(e.target.value)}
-                />
+                    onChange={(e) => handleInputMinutesChange(e.target.value)}
+                /> */}
 
-                <input
+                {/* <input
                     class="pl-1"
                     name="long-break"
                     type="number"
                     value={minutes}
                     min={0}
                     max={999999}
-                    onChange={(e) => handleMinutesChange(e.target.value)}
-                />
-            </div> */}
+                    onChange={(e) => handleInputMinutesChange(e.target.value)}
+                /> */}
+            </div>
         </div>
     )
 }
