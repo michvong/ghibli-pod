@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { Checkbox } from "@material-tailwind/react";
 
 import Minimize from '../../icons/Minimize';
 import Play from '../../icons/Play';
@@ -34,7 +35,7 @@ export default function Timer() {
     const [isShortBreak, setIsShortBreak] = useState(false);
     const [isLongBreak, setIsLongBreak] = useState(false);
 
-    const [isAutoTransition, setIsAutoTransition] = useState(true);
+    const [isAutoTransition, setIsAutoTransition] = useState(false);
 
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
@@ -171,6 +172,14 @@ export default function Timer() {
 
     }
 
+    const onAutoTransitionClick = () => {
+        if (isAutoTransition) {
+            setIsAutoTransition(false);
+        } else {
+            setIsAutoTransition(true);
+        }
+    }
+
     const onRestartClick = () => {
         if (isPlaying !== true && timerLengthInSeconds === 0) {
             setTimerLengthInSeconds(inputPomodoroMinutes * 60);
@@ -277,6 +286,11 @@ export default function Timer() {
                     max={99999}
                     onChange={(e) => handleLongBreakChange(e.target.value)}
                 />
+            </div>
+
+            <div class="mt-2 flex justify-start">
+                <p class="mr-2 text-sm text-gray-300">auto-transition timer</p>
+                <Checkbox onClick={onAutoTransitionClick} color="blue" />
             </div>
         </div>
     )
