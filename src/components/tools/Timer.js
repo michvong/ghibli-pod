@@ -37,7 +37,7 @@ export default function Timer() {
         if (timerLengthInSeconds === 0) {
             setIsPlaying(false);
             clearInterval(intervalId);
-            // setTimerLengthInSeconds(DEFAULT_TIMER_LENGTH);
+            
             if (isPomodoro === true) {
                 setPomodoroSessions(pomodoroSessions + 1);
             }
@@ -127,23 +127,11 @@ export default function Timer() {
 
         setTimerLengthInSeconds(inputLongMinutes * 60);
     }
-
-    const handleShortMinsChange = () => {
-
-    }
-
-    const handleLongMinsChange = () => {
-
-    }
     
     const onSettingsClick = () => {
 
     }
 
-    /* idea:
-    - when user clicks restart, timer should go back to initial value
-    - this button will ONLY work if timer is 0 and NOT currently running (use boolean?)
-    */
     const onRestartClick = () => {
         if (isPlaying !== true && timerLengthInSeconds === 0) {
             setTimerLengthInSeconds(inputPomodoroMinutes * 60);
@@ -180,14 +168,7 @@ export default function Timer() {
         const formattedSeconds = timerLengthInSeconds % 60;
         return formattedMinutes + ":" + pad(formattedSeconds);
     }
-    
-    /* idea: after work timer completes, transition to break
-    - if less than 3 sessions, short break
-    - if more than 4 sessions, long break
-    1. let user input number of minutes for timer (default 25)
-    2. when user starts timer, start counting down seconds and minutes
-    3. once timer is done, play a sound and add to # of sessions completed 
-    */
+
 
     return (
         <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
