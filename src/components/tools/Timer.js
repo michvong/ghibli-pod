@@ -30,9 +30,9 @@ export default function Timer() {
     const [intervalId, setIntervalId] = useState();
     const [formattedTime, setFormattedTime] = useState(DEFAULT_POMODORO_FORMATTED_TIME);
 
-    const [inputPomodoroMinutes, setPomodoroMinutes] = useState(DEFAULT_POMODORO_INPUT_MINUTES);
-    const [inputShortMinutes, setShortMinutes] = useState(DEFAULT_SHORT_INPUT_MINUTES);
-    const [inputLongMinutes, setLongMinutes] = useState(DEFAULT_LONG_INPUT_MINUTES);
+    const [inputPomodoroMinutes, setInputPomodoroMinutes] = useState(DEFAULT_POMODORO_INPUT_MINUTES);
+    const [inputShortMinutes, setInputShortMinutes] = useState(DEFAULT_SHORT_INPUT_MINUTES);
+    const [inputLongMinutes, setInputLongMinutes] = useState(DEFAULT_LONG_INPUT_MINUTES);
 
     const [pomodoroSessions, setPomodoroSessions] = useState(0);
     const [isPomodoro, setIsPomodoro] = useState(true);
@@ -101,42 +101,48 @@ export default function Timer() {
     const handlePomodoroChange = (minutes) => {
         if (minutes > 999 || minutes < 1) {
             console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-            setTimerLengthInSeconds(DEFAULT_POMODORO_LENGTH);
-            setPomodoroMinutes(DEFAULT_POMODORO_FORMATTED_TIME);
+            if (isPomodoro) {
+                setTimerLengthInSeconds(DEFAULT_POMODORO_LENGTH);
+            }
+            setInputPomodoroMinutes(DEFAULT_POMODORO_FORMATTED_TIME);
         } else {
             console.log("Pomodoro is now " + minutes);
             if (isPomodoro) {
                 setTimerLengthInSeconds(minutes * 60);
             }
-            setPomodoroMinutes(minutes);
+            setInputPomodoroMinutes(minutes);
         }
     }
 
     const handleShortBreakChange = (minutes) => {
         if (minutes > 999 || minutes < 1) {
             console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-            setTimerLengthInSeconds(DEFAULT_SHORT_LENGTH);
-            setShortMinutes(DEFAULT_SHORT_FORMATTED_TIME);
+            if (isShortBreak) {
+                setTimerLengthInSeconds(DEFAULT_SHORT_LENGTH);
+            }
+            setInputShortMinutes(DEFAULT_SHORT_FORMATTED_TIME);
         } else {
             console.log("Short break is now " + minutes);
             if (isShortBreak) {
                 setTimerLengthInSeconds(minutes * 60);
             }
-            setShortMinutes(minutes);
+            setInputShortMinutes(minutes);
         }
     }
 
     const handleLongBreakChange = (minutes) => {
         if (minutes > 999 || minutes < 1) {
             console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-            setTimerLengthInSeconds(DEFAULT_LONG_LENGTH);
-            setLongMinutes(DEFAULT_LONG_FORMATTED_TIME);
+            if (isLongBreak) {
+                setTimerLengthInSeconds(DEFAULT_LONG_LENGTH);
+            }
+            setInputLongMinutes(DEFAULT_LONG_FORMATTED_TIME);
         } else {
             console.log("Long break is now " + minutes);
             if (isLongBreak) {
                 setTimerLengthInSeconds(minutes * 60);
             }
-            setLongMinutes(minutes);
+            setInputLongMinutes(minutes);
         }
     }
 
@@ -148,7 +154,11 @@ export default function Timer() {
         setIsShortBreak(false);
         setIsLongBreak(false);
 
-        setTimerLengthInSeconds(inputPomodoroMinutes * 60);
+        if (isNaN(inputPomodoroMinutes)) {
+            setTimerLengthInSeconds(DEFAULT_POMODORO_LENGTH);
+        } else {
+            setTimerLengthInSeconds(inputPomodoroMinutes * 60);
+        }
     }
 
     const handleShortTypeClick = () => {
@@ -159,7 +169,11 @@ export default function Timer() {
         setIsPomodoro(false);
         setIsLongBreak(false);
 
-        setTimerLengthInSeconds(inputShortMinutes * 60);
+        if (isNaN(inputShortMinutes)) {
+            setTimerLengthInSeconds(DEFAULT_SHORT_LENGTH)
+        } else {
+            setTimerLengthInSeconds(inputShortMinutes * 60);
+        }
     }
 
     const handleLongTypeClick = () => {
@@ -170,7 +184,11 @@ export default function Timer() {
         setIsPomodoro(false);
         setIsShortBreak(false);
 
-        setTimerLengthInSeconds(inputLongMinutes * 60);
+        if (isNaN(inputLongMinutes)) {
+            setTimerLengthInSeconds(DEFAULT_LONG_LENGTH)
+        } else {
+            setTimerLengthInSeconds(inputLongMinutes * 60);
+        }
     }
     
     const onSettingsClick = () => {
