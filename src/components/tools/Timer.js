@@ -174,7 +174,9 @@ export default function Timer() {
         <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
             <div class="flex justify-between">
                 <h3 class="text-xl text-white">timer</h3>
-                <Minimize />
+                <button>
+                    <Minimize />
+                </button>
             </div>
 
             <div class="flex justify-between text-white">
