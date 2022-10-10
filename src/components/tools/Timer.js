@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
+import Minimize from '../../icons/Minimize';
 import Play from '../../icons/Play';
 import Pause from '../../icons/Pause';
 import Restart from '../../icons/Restart';
@@ -171,7 +172,10 @@ export default function Timer() {
 
     return (
         <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
-            <h3 class="text-xl text-white">timer</h3>
+            <div class="flex justify-between">
+                <h3 class="text-xl text-white">timer</h3>
+                <Minimize />
+            </div>
 
             <div class="flex justify-between text-white">
                 <h3 class="mt-3 text-5xl font-bold text-white">{formattedTime}</h3>
