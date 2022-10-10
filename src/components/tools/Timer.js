@@ -18,6 +18,9 @@ export default function Timer() {
     const [inputMinutes, setInputMinutes] = useState(DEFAULT_INPUT_MINUTES);
 
     const [pomodoroSessions, setPomodoroSessions] = useState(0);
+    const [pomodoroStatus, setworkStatus] = useState(false);
+    const [shortBreakStatus, setShortBreakStatus] = useState(false);
+    const [longBreakStatus, setLongBreakStatus] = useState(false);
 
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
@@ -47,6 +50,24 @@ export default function Timer() {
             setTimerLengthInSeconds(minutes * 60);
             setInputMinutes(minutes);
         }
+    }
+
+    const handlePomodoroTypeClick = () => {
+        setPomodoroSessions(true);
+        setShortBreakStatus(false);
+        setLongBreakStatus(false);
+    }
+
+    const handleShortTypeClick = () => {
+        setShortBreakStatus(true);
+        setPomodoroSessions(false);
+        setLongBreakStatus(false);
+    }
+
+    const handleLongTypeClick = () => {
+        setLongBreakStatus(true);
+        setPomodoroSessions(false);
+        setShortBreakStatus(false);
     }
 
     const handleShortMinsChange = () => {
@@ -111,8 +132,8 @@ export default function Timer() {
     */
 
     return (
-        <div class="block px-8 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
-            <h3 class="text-xl text-white">Timer</h3>
+        <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
+            <h3 class="text-xl text-white">timer</h3>
 
             <div class="flex justify-between text-white">
                 <h3 class="mt-3 text-5xl font-bold text-white">{formattedTime}</h3>
@@ -127,15 +148,22 @@ export default function Timer() {
                 </div>
             </div>
 
-            <div class="flex justify-between">
-                <p class="mt-4 text-sm text-gray-300">
-                    You've completed {pomodoroSessions} sessions so far!
-                </p>
 
-                <button type="button" class="mt-4">
+            <div class="flex justify-between mt-4">
+                <button onClick={handlePomodoroTypeClick} class="focus:underline text-white decoration-blue-500">pomodoro</button>
+                <button onClick={handleShortTypeClick} class="focus:underline text-white decoration-blue-500">short break</button>
+                <button onClick={handleLongTypeClick} class="focus:underline text-white decoration-blue-500">long break</button>
+
+                <button type="button" class="">
                     <Settings />
                 </button>
             </div>
+
+            {/* <div class="flex justify-between">
+                <p class="mt-2 text-sm text-gray-300">
+                    You've completed {pomodoroSessions} sessions so far!
+                </p>
+            </div> */}
             
             <div class="flex justify-between mt-4">
                 <input
