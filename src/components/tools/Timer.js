@@ -75,7 +75,7 @@ export default function Timer() {
     const handlePomodoroTransition = () => {
         setIsPomodoro(false);
 
-        if (pomodoroSessions <= 3) {
+        if (pomodoroSessions <= 4) {
             setIsShortBreak(true);
             setTimerLengthInSeconds(inputShortMinutes * 60);
         } else {
