@@ -43,6 +43,7 @@ export default function Timer() {
     const [isLongBreak, setIsLongBreak] = useState(false);
 
     const [isAutoTransition, setIsAutoTransition] = useState(false);
+    const [isSettingsVisible, setIsSettingsVisible] = useState(true);
 
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
@@ -197,7 +198,11 @@ export default function Timer() {
     }
     
     const onSettingsClick = () => {
-
+        if (isSettingsVisible) {
+            setIsSettingsVisible(false);
+        } else {
+            setIsSettingsVisible(true);
+        }
     }
 
     const onAutoTransitionClick = () => {
@@ -293,47 +298,50 @@ export default function Timer() {
                 <button onClick={handleShortTypeClick} class={"text-white decoration-blue-500 " + (isShortBreak ? 'underline' : 'no-underline')}>short break</button>
                 <button onClick={handleLongTypeClick} class={"text-white decoration-blue-500 " + (isLongBreak ? 'underline' : 'no-underline')}>long break</button>
 
-                <button type="button" class="">
+                <button onClick={onSettingsClick} type="button" class="">
                     <Settings />
                 </button>
             </div>
+
+            <div class={(isSettingsVisible ? 'visible' : 'hidden')}>
+                <div class="flex justify-between mt-4 mr-12">
+                    <input
+                        class="pl-1"
+                        name="minutes"
+                        type="number"
+                        value={inputPomodoroMinutes}
+                        min={0}
+                        max={99999}
+                        onChange={(e) => handlePomodoroChange(e.target.value)}
+                    />
+
+                    <input
+                        class="pl-1"
+                        name="short-break"
+                        type="number"
+                        value={inputShortMinutes}
+                        min={0}
+                        max={99999}
+                        onChange={(e) => handleShortBreakChange(e.target.value)}
+                    />
+
+                    <input
+                        class="pl-1"
+                        name="long-break"
+                        type="number"
+                        value={inputLongMinutes}
+                        min={0}
+                        max={99999}
+                        onChange={(e) => handleLongBreakChange(e.target.value)}
+                    />
+                </div>
+
+                <div class="mt-2 flex justify-start">
+                    <p class="mr-2 text-sm text-gray-300">auto-transition timer</p>
+                    <Checkbox onClick={onAutoTransitionClick} color="blue" />
+                </div>
+            </div>
             
-            <div class="flex justify-between mt-4 mr-12">
-                <input
-                    class="pl-1"
-                    name="minutes"
-                    type="number"
-                    value={inputPomodoroMinutes}
-                    min={0}
-                    max={99999}
-                    onChange={(e) => handlePomodoroChange(e.target.value)}
-                />
-
-                <input
-                    class="pl-1"
-                    name="short-break"
-                    type="number"
-                    value={inputShortMinutes}
-                    min={0}
-                    max={99999}
-                    onChange={(e) => handleShortBreakChange(e.target.value)}
-                />
-
-                <input
-                    class="pl-1"
-                    name="long-break"
-                    type="number"
-                    value={inputLongMinutes}
-                    min={0}
-                    max={99999}
-                    onChange={(e) => handleLongBreakChange(e.target.value)}
-                />
-            </div>
-
-            <div class="mt-2 flex justify-start">
-                <p class="mr-2 text-sm text-gray-300">auto-transition timer</p>
-                <Checkbox onClick={onAutoTransitionClick} color="blue" />
-            </div>
         </div>
     )
 }
