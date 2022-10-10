@@ -251,10 +251,21 @@ export default function Timer() {
                 <div class="flex justify-start">
                     <h3 class="mr-4 text-xl text-white">timer</h3>
                     <div class="mt-2 flex justify-between gap-1">
-                        <Star />
-                        <Star />
-                        <Star />
-                        <Star />
+                        <div class={(pomodoroSessions >= 1 ? 'visible' : 'invisible')}>
+                            <Star />
+                        </div>
+
+                        <div class={(pomodoroSessions >= 2 ? 'visible' : 'invisible')}>
+                            <Star />
+                        </div>
+
+                        <div class={(pomodoroSessions >= 3 ? 'visible' : 'invisible')}>
+                            <Star />
+                        </div>
+
+                        <div class={(pomodoroSessions >= 4 ? 'visible' : 'invisible')}>
+                            <Star />
+                        </div>
                     </div>
                 </div>
 
