@@ -43,7 +43,7 @@ export default function Timer() {
     const [isLongBreak, setIsLongBreak] = useState(false);
 
     const [isAutoTransition, setIsAutoTransition] = useState(false);
-    const [isSettingsVisible, setIsSettingsVisible] = useState(true);
+    const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
