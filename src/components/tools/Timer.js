@@ -6,7 +6,9 @@ import Minimize from '../../icons/Minimize';
 import Play from '../../icons/Play';
 import Pause from '../../icons/Pause';
 import Restart from '../../icons/Restart';
-import Settings from '../../icons/Settings'
+import Settings from '../../icons/Settings';
+
+import NotifSound from '../../audio/bubble_bell.mp3';
 
 export default function Timer() {
     const DEFAULT_POMODORO_INPUT_MINUTES = 25;
@@ -20,6 +22,8 @@ export default function Timer() {
     const DEFAULT_LONG_INPUT_MINUTES = 15;
     const DEFAULT_LONG_LENGTH = 25 * 60;
     const DEFAULT_LONG_FORMATTED_TIME = "15:00";
+
+    const audio = new Audio(NotifSound);
 
     const [timerLengthInSeconds, setTimerLengthInSeconds] = useState(DEFAULT_POMODORO_INPUT_MINUTES * 60);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -39,6 +43,7 @@ export default function Timer() {
 
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
+            audio.play();
             setIsPlaying(false);
             clearInterval(intervalId);
             console.log("Timer completed!");
