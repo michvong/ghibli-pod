@@ -106,13 +106,13 @@ export default function Timer() {
     const handlePomodoroChange = (minutes) => {
         if (minutes > 999 || minutes < 1) {
             console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-            if (isPomodoro) {
+            if (isPomodoro && !isPlaying) {
                 setTimerLengthInSeconds(DEFAULT_POMODORO_LENGTH);
             }
             setInputPomodoroMinutes(DEFAULT_POMODORO_FORMATTED_TIME);
         } else {
             console.log("Pomodoro is now " + minutes);
-            if (isPomodoro) {
+            if (isPomodoro && !isPlaying) {
                 setTimerLengthInSeconds(minutes * 60);
             }
             setInputPomodoroMinutes(minutes);
@@ -122,13 +122,13 @@ export default function Timer() {
     const handleShortBreakChange = (minutes) => {
         if (minutes > 999 || minutes < 1) {
             console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-            if (isShortBreak) {
+            if (isShortBreak && !isPlaying) {
                 setTimerLengthInSeconds(DEFAULT_SHORT_LENGTH);
             }
             setInputShortMinutes(DEFAULT_SHORT_FORMATTED_TIME);
         } else {
             console.log("Short break is now " + minutes);
-            if (isShortBreak) {
+            if (isShortBreak && !isPlaying) {
                 setTimerLengthInSeconds(minutes * 60);
             }
             setInputShortMinutes(minutes);
@@ -138,13 +138,13 @@ export default function Timer() {
     const handleLongBreakChange = (minutes) => {
         if (minutes > 999 || minutes < 1) {
             console.log("Minutes cannot be " + minutes + ". It must be between 1 and 999.");
-            if (isLongBreak) {
+            if (isLongBreak && !isPlaying) {
                 setTimerLengthInSeconds(DEFAULT_LONG_LENGTH);
             }
             setInputLongMinutes(DEFAULT_LONG_FORMATTED_TIME);
         } else {
             console.log("Long break is now " + minutes);
-            if (isLongBreak) {
+            if (isLongBreak && !isPlaying) {
                 setTimerLengthInSeconds(minutes * 60);
             }
             setInputLongMinutes(minutes);
