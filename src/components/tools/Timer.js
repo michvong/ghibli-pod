@@ -71,6 +71,8 @@ export default function Timer() {
     const handleTimerTransition = () => {
         if (isPomodoro) {
             handlePomodoroTransition();
+        } else {
+            handleBreakTransition();
         }
     }
 
