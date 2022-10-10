@@ -34,15 +34,21 @@ export default function Timer() {
     const [isShortBreak, setIsShortBreak] = useState(false);
     const [isLongBreak, setIsLongBreak] = useState(false);
 
+    const [isAutoTransition, setIsAutoTransition] = useState(true);
+
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
             setIsPlaying(false);
             clearInterval(intervalId);
+            console.log("Timer completed!");
 
-            if (isPomodoro === true) {
+            if (isPomodoro) {
                 setPomodoroSessions(pomodoroSessions + 1);
             }
-            console.log("Timer completed!");
+
+            if (isAutoTransition) {
+                handleTimerTransition();
+            }
         }
     }, [timerLengthInSeconds, intervalId]);
 
@@ -52,6 +58,38 @@ export default function Timer() {
 
     function pad(num) {
         return (num < 10) ? ("0" + num) : num;
+    }
+
+    const handleTimerTransition = () => {
+        if (isPomodoro) {
+            handlePomodoroTransition();
+        }
+    }
+
+    const handlePomodoroTransition = () => {
+        setIsPomodoro(false);
+
+        if (pomodoroSessions <= 3) {
+            setIsShortBreak(true);
+            setTimerLengthInSeconds(inputShortMinutes * 60);
+        } else {
+            setIsLongBreak(true);
+            setTimerLengthInSeconds(inputLongMinutes * 60);
+        }
+
+        playTimer();
+    }
+
+    const handleBreakTransition = () => {
+        if (isShortBreak) {
+            setIsShortBreak(false);
+        } else {
+            setIsLongBreak(false);
+        }
+
+        setIsPomodoro(true);
+        setTimerLengthInSeconds(inputPomodoroMinutes * 60);
+        playTimer();
     }
 
     const handlePomodoroChange = (minutes) => {
