@@ -120,7 +120,7 @@ export default function Timer() {
     const handleLongTypeClick = () => {
         setIsPlaying(false);
         clearInterval(intervalId);
-        
+
         setIsLongBreak(true);
         setIsPomodoro(false);
         setIsShortBreak(false);
@@ -223,14 +223,14 @@ export default function Timer() {
                 </p>
             </div> */}
             
-            <div class="flex justify-between mt-4">
+            <div class="flex justify-between mt-4 mr-12">
                 <input
                     class="pl-1"
                     name="minutes"
                     type="number"
                     value={inputPomodoroMinutes}
                     min={0}
-                    max={999999}
+                    max={99999}
                     onChange={(e) => handlePomodoroChange(e.target.value)}
                 />
 
@@ -240,7 +240,7 @@ export default function Timer() {
                     type="number"
                     value={inputShortMinutes}
                     min={0}
-                    max={999999}
+                    max={99999}
                     onChange={(e) => handleShortBreakChange(e.target.value)}
                 />
 
@@ -250,7 +250,7 @@ export default function Timer() {
                     type="number"
                     value={inputLongMinutes}
                     min={0}
-                    max={999999}
+                    max={99999}
                     onChange={(e) => handleLongBreakChange(e.target.value)}
                 />
             </div>
