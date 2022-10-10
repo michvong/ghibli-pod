@@ -7,6 +7,7 @@ import Play from '../../icons/Play';
 import Pause from '../../icons/Pause';
 import Restart from '../../icons/Restart';
 import Settings from '../../icons/Settings';
+import Star from '../../icons/Star';
 
 import NotifSound from '../../audio/bubble_bell.mp3';
 
@@ -247,7 +248,16 @@ export default function Timer() {
     return (
         <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-xl max-w-sm">
             <div class="flex justify-between">
-                <h3 class="text-xl text-white">timer</h3>
+                <div class="flex justify-start">
+                    <h3 class="mr-4 text-xl text-white">timer</h3>
+                    <div class="mt-2 flex justify-between gap-1">
+                        <Star />
+                        <Star />
+                        <Star />
+                        <Star />
+                    </div>
+                </div>
+
                 <button>
                     <Minimize />
                 </button>
