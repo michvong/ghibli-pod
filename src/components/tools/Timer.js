@@ -23,6 +23,8 @@ export default function Timer() {
     const DEFAULT_LONG_LENGTH = 25 * 60;
     const DEFAULT_LONG_FORMATTED_TIME = "15:00";
 
+    const NUM_SESSIONS_REQUIRED_LONG_BREAK = 4;
+
     const audio = new Audio(NotifSound);
 
     const [timerLengthInSeconds, setTimerLengthInSeconds] = useState(DEFAULT_POMODORO_INPUT_MINUTES * 60);
@@ -75,7 +77,7 @@ export default function Timer() {
     const handlePomodoroTransition = () => {
         setIsPomodoro(false);
 
-        if (pomodoroSessions <= 4) {
+        if (pomodoroSessions <= NUM_SESSIONS_REQUIRED_LONG_BREAK) {
             setIsShortBreak(true);
             setTimerLengthInSeconds(inputShortMinutes * 60);
         } else {
