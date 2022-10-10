@@ -297,12 +297,6 @@ export default function Timer() {
                     <Settings />
                 </button>
             </div>
-
-            {/* <div class="flex justify-between">
-                <p class="mt-2 text-sm text-gray-300">
-                    You've completed {pomodoroSessions} sessions so far!
-                </p>
-            </div> */}
             
             <div class="flex justify-between mt-4 mr-12">
                 <input
