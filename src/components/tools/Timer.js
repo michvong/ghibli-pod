@@ -17,11 +17,15 @@ export default function Timer() {
     const [formattedTime, setFormattedTime] = useState(DEFAULT_FORMATTED_TIME);
     const [inputMinutes, setInputMinutes] = useState(DEFAULT_INPUT_MINUTES);
 
+    const [pomodoroSessions, setPomodoroSessions] = useState(0);
+
     useEffect(() => {
         if (timerLengthInSeconds === 0) {
             setIsPlaying(false);
             clearInterval(intervalId);
-            setTimerLengthInSeconds(DEFAULT_TIMER_LENGTH);
+            // setTimerLengthInSeconds(DEFAULT_TIMER_LENGTH);
+            setPomodoroSessions(pomodoroSessions + 1);
+            console.log("Timer completed!");
         }
     }, [timerLengthInSeconds, intervalId]);
 
@@ -62,7 +66,7 @@ export default function Timer() {
     - this button will ONLY work if timer is 0 and NOT currently running (use boolean?)
     */
     const onRestartClick = () => {
-        if (isPlaying !== true) {
+        if (isPlaying !== true && timerLengthInSeconds === 0) {
             setTimerLengthInSeconds(inputMinutes * 60);
         } 
     }
@@ -125,7 +129,7 @@ export default function Timer() {
 
             <div class="flex justify-between">
                 <p class="mt-4 text-sm text-gray-300">
-                    You've completed _ sessions to this date!
+                    You've completed {pomodoroSessions} sessions so far!
                 </p>
 
                 <button type="button" class="mt-4">
