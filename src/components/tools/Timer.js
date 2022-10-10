@@ -37,7 +37,7 @@ export default function Timer() {
         if (timerLengthInSeconds === 0) {
             setIsPlaying(false);
             clearInterval(intervalId);
-            
+
             if (isPomodoro === true) {
                 setPomodoroSessions(pomodoroSessions + 1);
             }
@@ -168,7 +168,6 @@ export default function Timer() {
         const formattedSeconds = timerLengthInSeconds % 60;
         return formattedMinutes + ":" + pad(formattedSeconds);
     }
-
 
     return (
         <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-lg max-w-sm">
