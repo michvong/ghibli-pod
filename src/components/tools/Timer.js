@@ -214,7 +214,7 @@ export default function Timer() {
     }
 
     const onRestartClick = () => {
-        if (isPlaying !== true && timerLengthInSeconds === 0) {
+        if (!isPlaying) {
             setTimerLengthInSeconds(inputPomodoroMinutes * 60);
         } 
     }
