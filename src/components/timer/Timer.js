@@ -366,7 +366,6 @@ export default function Timer() {
                     <Checkbox onClick={onAutoTransitionClick} color="blue" />
                 </div>
             </div>
-
         </div>
     )
 }
