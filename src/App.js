@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import Timer from './components/tools/Timer';
+import Timer from './components/timer/Timer';
 
 function App() {
   return (
