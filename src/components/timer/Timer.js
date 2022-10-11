@@ -2,11 +2,8 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Checkbox } from "@material-tailwind/react";
 
-import Minimize from '../../assets/icons/minimize.svg';
 import Play from '../../assets/icons/play.svg';
 import Pause from '../../assets/icons/pause.svg';
-import Restart from '../../assets/icons/restart.svg';
-import Settings from '../../assets/icons/settings.svg';
 import Star from '../../assets/icons/star.svg';
 
 import NotifSound from '../../assets/audio/bubble_bell.mp3';
@@ -275,7 +272,6 @@ export default function Timer() {
                 </div>
 
                 <button>
-                    {/* <img src={Minimize} alt="minimize" /> */}
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="hover:stroke-gray-400 active:stroke-gray-700"
                         width="18" height="18"
@@ -295,7 +291,6 @@ export default function Timer() {
                     </button>
 
                     <button onClick={onRestartClick} type="button" class="mt-4">
-                        {/* <img src={Restart} alt="restart" /> */}
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="hover:stroke-gray-400 active:stroke-gray-700"
                             width="18" height="18"
@@ -315,7 +310,6 @@ export default function Timer() {
                 <button onClick={handleLongTypeClick} class={"text-white decoration-blue-500 " + (isLongBreak ? 'underline' : 'no-underline')}>long break</button>
 
                 <button onClick={onSettingsClick} type="button" class="">
-                    {/* <img src={Settings} alt="settings" /> */}
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="hover:stroke-gray-400 active:stroke-gray-700"
                         width="18" height="18"
