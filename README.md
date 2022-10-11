@@ -9,5 +9,4 @@ A Studio Ghibli-themed productivity application with a pomodoro timer, to-do lis
 - npm install react-router-dom@6
 - npm install -D tailwindcss postcss autoprefixer
 - npm install --save-dev tailwind-scrollbar
-<!-- - npm install tailwind-scrollbar-hide -->
 <!-- - npm install react-draggable -->
