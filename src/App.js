@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import Timer from './components/timer/Timer';
+import Environments from './components/environment/Environments';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         {/* <Route path="/main"></Route> */}
         <Route path="timer" element={<Timer />}></Route>
+        <Route path="environments" element={<Environments />}></Route>
       </Routes>
     </BrowserRouter>
   );
