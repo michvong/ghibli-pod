@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Checkbox } from "@material-tailwind/react";
 
-import Minimize from '../../icons/Minimize';
-import Play from '../../icons/Play';
-import Pause from '../../icons/Pause';
-import Restart from '../../icons/Restart';
-import Settings from '../../icons/Settings';
-import Star from '../../icons/Star';
+import Minimize from '../../assets/icons/minimize.svg';
+import Play from '../../assets/icons/play.svg';
+import Pause from '../../assets/icons/pause.svg';
+import Restart from '../../assets/icons/restart.svg';
+import Settings from '../../assets/icons/settings.svg';
+import Star from '../../assets/icons/star.svg';
 
-import NotifSound from '../../audio/bubble_bell.mp3';
+import NotifSound from '../../assets/audio/bubble_bell.mp3';
 
 export default function Timer() {
     const DEFAULT_POMODORO_INPUT_MINUTES = 25;
@@ -257,25 +257,25 @@ export default function Timer() {
                     <h3 class="mr-4 text-xl text-white">timer</h3>
                     <div class="mt-2 flex justify-between gap-1">
                         <div class={(pomodoroSessions >= 1 ? 'visible' : 'invisible')}>
-                            <Star />
+                            <img src={Star} alt="star" />
                         </div>
 
                         <div class={(pomodoroSessions >= 2 ? 'visible' : 'invisible')}>
-                            <Star />
+                            <img src={Star} alt="star" />
                         </div>
 
                         <div class={(pomodoroSessions >= 3 ? 'visible' : 'invisible')}>
-                            <Star />
+                            <img src={Star} alt="star" />
                         </div>
 
                         <div class={(pomodoroSessions >= 4 ? 'visible' : 'invisible')}>
-                            <Star />
+                            <img src={Star} alt="star" />
                         </div>
                     </div>
                 </div>
 
                 <button>
-                    <Minimize />
+                    <img src={Minimize} alt="minimize" />
                 </button>
             </div>
 
@@ -283,11 +283,11 @@ export default function Timer() {
                 <h3 class="mt-3 text-5xl font-bold text-white">{formattedTime}</h3>
                 <div class="flex space-x-1">
                     <button onClick={onTimerToggle} type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        {isPlaying ? <Pause /> : <Play />}
+                        {isPlaying ? <img src={Pause} alt="pause" /> : <img src={Play} alt="play" />}
                     </button>
 
                     <button onClick={onRestartClick} type="button" class="mt-4">
-                        <Restart />
+                        <img src={Restart} alt="restart" />
                     </button>
                 </div>
             </div>
@@ -299,7 +299,7 @@ export default function Timer() {
                 <button onClick={handleLongTypeClick} class={"text-white decoration-blue-500 " + (isLongBreak ? 'underline' : 'no-underline')}>long break</button>
 
                 <button onClick={onSettingsClick} type="button" class="">
-                    <Settings />
+                    <img src={Settings} alt="settings" />
                 </button>
             </div>
 
