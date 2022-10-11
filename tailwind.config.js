@@ -10,22 +10,9 @@ module.exports = {
 
   plugins: [
     require('tailwind-scrollbar')({ nocompatible: true }),
-    // require('tailwind-scrollbar-hide'),
-    // require("daisyui"),
   ],
 
   variants: {
     scrollbar: ['rounded'],
   },
-
-  // daisyui: {
-  //   styled: true,
-  //   themes: false,
-  //   base: true,
-  //   utils: true,
-  //   logs: true,
-  //   rtl: false,
-  //   prefix: "",
-  //   darkTheme: "dark",
-  // },
 }
