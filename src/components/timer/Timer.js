@@ -355,7 +355,7 @@ export default function Timer() {
                     />
                 </div>
 
-                <div class="mt-2 flex justify-start">
+                <div class="mt-1 flex justify-start items-center">
                     <p class="mr-2 text-sm text-gray-300">auto-transition timer</p>
                     <Checkbox onClick={onAutoTransitionClick} color="blue" />
                 </div>
