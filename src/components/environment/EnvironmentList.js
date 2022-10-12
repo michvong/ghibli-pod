@@ -44,7 +44,7 @@ export default function EnvironmentList() {
                     />
 
                     <Environment
-                        tooltipContent="spiritied away"
+                        tooltipContent="spirited away"
                         image={Dragon}
                         alt="dragon"
                         // handleClick={handleMixClick}
