@@ -8,15 +8,14 @@ import Fire from '../../assets/icons/fire.png'
 import WaterWave from '../../assets/icons/water_wave.png'
 import Environment from './Environment';
 
-
 export default function EnvironmentList() {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        api.getPlaylistContent("PLI3qJXEG_OMQSMJ7koFkwyGA0Njn4SJKo")
+        api.getVideoIdFromPlaylist("PLI3qJXEG_OMQSMJ7koFkwyGA0Njn4SJKo", 0)
           .then((response) => {
             // setResults(response.data.items[0].contentDetails.videoId);
-            setResults(response.data.items);
+            setResults(response);
           })
       }, []);
 
