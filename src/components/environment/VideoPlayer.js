@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import YouTube from 'react-youtube';
 
-export default function VideoPlayer(playlistId) {
+export default function VideoPlayer({ playlistId }) {
     const opts = {
         width: window.innerWidth,
         height: window.innerHeight,
@@ -10,7 +10,7 @@ export default function VideoPlayer(playlistId) {
             // controls: 0, // this doesn't work if autoplay is on
             // disablekb: 1,
             modestbranding: 1,
-            list: 'PLI3qJXEG_OMQSMJ7koFkwyGA0Njn4SJKo',
+            list: playlistId,
             loop: 1,
             start: 1
         },
