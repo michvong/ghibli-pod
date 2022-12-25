@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Checkbox } from '@material-tailwind/react';
 
 import Play from '../../assets/icons/play.svg';
 import Pause from '../../assets/icons/pause.svg';
@@ -399,9 +398,15 @@ export default function Timer() {
           />
         </div>
 
-        <div class="mt-1 flex justify-start items-center">
-          <p class="mr-2 text-sm text-gray-300">auto-transition timer</p>
-          <Checkbox onClick={onAutoTransitionClick} color="blue" />
+        <div class="mt-4 flex justify-start items-center">
+          <p class="mr-3 text-sm text-gray-300">auto-transition timer</p>
+          <input
+            id="default-checkbox"
+            onClick={onAutoTransitionClick}
+            type="checkbox"
+            value=""
+            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
         </div>
       </div>
     </div>
