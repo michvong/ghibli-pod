@@ -4,8 +4,12 @@ import Down from '../../assets/icons/chevron-down.svg';
 import Clock from '../../assets/icons/clock.svg';
 import Image from '../../assets/icons/image.svg';
 
-export default function Sidebar() {
+export default function Sidebar({ handleTimerClick }) {
   const [showSidebar, setShowSidebar] = useState(false);
+
+  const onTimerClick = () => {
+    handleTimerClick();
+  };
 
   return (
     <>
@@ -35,7 +39,7 @@ export default function Sidebar() {
         </div>
 
         <div class="flex flex-col justify-center items-center mt-7">
-          <button>
+          <button onClick={onTimerClick}>
             <img src={Clock} />
           </button>
           <p class="text-sm">timer</p>
