@@ -4,17 +4,21 @@ import Down from '../../assets/icons/chevron-down.svg';
 import Clock from '../../assets/icons/clock.svg';
 import Image from '../../assets/icons/image.svg';
 
-export default function Sidebar({ handleTimerClick }) {
+export default function Sidebar({ handleTimerClick, handleEnvironmentsClick }) {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const onTimerClick = () => {
     handleTimerClick();
   };
 
+  const onEnvironmentsClick = () => {
+    handleEnvironmentsClick();
+  };
+
   return (
     <>
       <button
-        className="fixed z-30 flex items-center cursor-pointer left-3 bottom-5 bg-blue-700 hover:bg-blue-800
+        className="fixed z-30 flex items-center cursor-pointer left-6 bottom-5 bg-blue-700 hover:bg-blue-800
             focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5
             text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         onClick={() => setShowSidebar(!showSidebar)}
@@ -46,7 +50,7 @@ export default function Sidebar({ handleTimerClick }) {
         </div>
 
         <div class="flex flex-col justify-center items-center mt-4">
-          <button>
+          <button onClick={onEnvironmentsClick}>
             <img src={Image} />
           </button>
           <p class="text-sm">spaces</p>

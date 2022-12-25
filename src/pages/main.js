@@ -7,6 +7,7 @@ import Sidebar from '../components/sidebar/Sidebar';
 
 export default function Main() {
   const [isTimerVisible, setIsTimerVisible] = useState(false);
+  const [isEnvironmentsVisible, setIsEnvironmentsVisible] = useState(false);
 
   const handleTimerClick = () => {
     if (isTimerVisible) {
@@ -16,12 +17,23 @@ export default function Main() {
     }
   };
 
+  const handleEnvironmentsClick = () => {
+    if (isEnvironmentsVisible) {
+      setIsEnvironmentsVisible(false);
+    } else {
+      setIsEnvironmentsVisible(true);
+    }
+  };
+
   return (
     <div class="h-screen w-screen">
-      <Sidebar handleTimerClick={handleTimerClick} />
+      <Sidebar
+        handleTimerClick={handleTimerClick}
+        handleEnvironmentsClick={handleEnvironmentsClick}
+      />
 
       <div class="absolute">
-        <VideoPlayer />
+        <VideoPlayer isEnvironmentsVisible={isEnvironmentsVisible} />
       </div>
 
       <Draggable>

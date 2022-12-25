@@ -3,10 +3,11 @@ import YouTube from 'react-youtube';
 import EnvironmentList from './EnvironmentList';
 import Draggable from 'react-draggable';
 
-export default function VideoPlayer() {
+export default function VideoPlayer({ isEnvironmentsVisible }) {
   const [currentPlaylistId, setCurrentPlaylistId] = useState();
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
   const [player, setPlayer] = useState();
+  // const [isEnvironmentsVisible, setIsEnvironmentsVisible] = useState(false);
 
   const opts = {
     width: window.innerWidth,
@@ -50,7 +51,7 @@ export default function VideoPlayer() {
       </div>
 
       <Draggable>
-        <div class="box">
+        <div class={isEnvironmentsVisible ? 'visible' : 'hidden'}>
           <EnvironmentList
             class="absolute"
             handlePlaylistSelect={handlePlaylistSelect}
