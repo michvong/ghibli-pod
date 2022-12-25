@@ -5,6 +5,7 @@ import Draggable from 'react-draggable';
 
 export default function VideoPlayer() {
   const [currentPlaylistId, setCurrentPlaylistId] = useState();
+  const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
 
   const opts = {
     width: window.innerWidth,
@@ -20,6 +21,11 @@ export default function VideoPlayer() {
     },
   };
 
+  const handleVideoEnd = () => {
+    setCurrentVideoIdx(currentVideoIdx + 1);
+    console.log(currentVideoIdx);
+  };
+
   const handlePlaylistSelect = (playlistId) => {
     setCurrentPlaylistId(playlistId);
   };
@@ -27,12 +33,17 @@ export default function VideoPlayer() {
   return (
     <div>
       <div class="absolute pointer-events-none">
-        <YouTube opts={opts} />
+        <YouTube opts={opts} onEnd={handleVideoEnd} />
       </div>
 
       <Draggable>
         <div class="box">
-          <EnvironmentList class="absolute" handlePlaylistSelect={handlePlaylistSelect} />
+          <EnvironmentList
+            class="absolute"
+            handlePlaylistSelect={handlePlaylistSelect}
+            currentPlaylistId={currentPlaylistId}
+            currentVideoIdx={currentVideoIdx}
+          />
         </div>
       </Draggable>
     </div>
