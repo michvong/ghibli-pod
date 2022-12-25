@@ -3,10 +3,13 @@ import Draggable, { DraggableCore } from 'react-draggable';
 
 import VideoPlayer from '../components/environment/VideoPlayer';
 import Timer from '../components/timer/Timer';
+import Sidebar from '../components/sidebar/Sidebar';
 
 export default function Main() {
   return (
-    <div class="relative h-screen w-screen">
+    <div class="h-screen w-screen">
+      <Sidebar />
+
       <div class="absolute">
         <VideoPlayer />
       </div>
