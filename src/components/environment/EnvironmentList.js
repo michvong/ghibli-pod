@@ -26,7 +26,7 @@ export default function EnvironmentList({
     });
 
     api.getChannelInfo(currentChannelId).then((response) => {
-      setCurrentChannelIconUrl(response.data.items[0].snippet.thumbnails.medium.url);
+      setCurrentChannelIconUrl(response.data.items[0].snippet.thumbnails.default.url);
     });
   }, [currentPlaylistId, currentChannelId]);
 
@@ -64,11 +64,11 @@ export default function EnvironmentList({
           <div>
             <h3 class="text-sm text-white">{currentVideoChannel}</h3>
             <div class="flex mt-1 justify-start items-center">
-              <a href={`https://www.youtube.com/watch?v=${currentVideoId}`}>
+              <a href={`https://www.youtube.com/watch?v=${currentVideoId}`} target="_blank">
                 <img src={Video} alt="video" class="mr-1" />
               </a>
 
-              <a href={`https://www.youtube.com/channel/${currentChannelId}`}>
+              <a href={`https://www.youtube.com/channel/${currentChannelId}`} target="_blank">
                 <img src={Link} alt="channel" />
               </a>
             </div>
