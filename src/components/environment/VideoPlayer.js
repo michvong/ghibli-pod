@@ -35,6 +35,14 @@ export default function VideoPlayer() {
     player.nextVideo();
   };
 
+  const handleVolumeMute = () => {
+    player.mute();
+  };
+
+  const handleVolumeUnmute = () => {
+    player.unMute();
+  };
+
   return (
     <div>
       <div class="absolute pointer-events-none">
@@ -49,6 +57,8 @@ export default function VideoPlayer() {
             currentPlaylistId={currentPlaylistId}
             currentVideoIdx={currentVideoIdx}
             handleNextSelect={handleNextSelect}
+            handleVolumeMute={handleVolumeMute}
+            handleVolumeUnmute={handleVolumeUnmute}
           />
         </div>
       </Draggable>

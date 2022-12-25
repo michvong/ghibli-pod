@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import Environment from './Environment';
-
 import { ENVIRONMENTS } from './environmentConstants';
+
 import Video from '../../assets/icons/video.svg';
-import Link from '../../assets/icons/link.svg';
+import Youtube from '../../assets/icons/youtube.svg';
 import Next from '../../assets/icons/skip-forward.svg';
 import Previous from '../../assets/icons/skip-back.svg';
+import Volume from '../../assets/icons/volume-1.svg';
+import VolumeX from '../../assets/icons/volume-x.svg';
 
 export default function EnvironmentList({
   handlePlaylistSelect,
   currentPlaylistId,
   currentVideoIdx,
   handleNextSelect,
+  handleVolumeMute,
+  handleVolumeUnmute,
 }) {
+  const [isMuted, setIsMuted] = useState(false);
   const [currentVideoTitle, setCurrentVideoTitle] = useState();
   const [currentVideoChannel, setCurrentVideoChannel] = useState('n/a');
   const [currentVideoId, setCurrentVideoId] = useState();
@@ -41,6 +46,16 @@ export default function EnvironmentList({
     handleNextSelect();
   };
 
+  const onVolumeToggle = () => {
+    if (!isMuted) {
+      setIsMuted(true);
+      handleVolumeMute();
+    } else {
+      setIsMuted(false);
+      handleVolumeUnmute();
+    }
+  };
+
   return (
     <div class>
       <div class="block relative px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-xl max-w-xs">
@@ -66,25 +81,34 @@ export default function EnvironmentList({
         <div class="flex justify-between items-center bg-gray-800 p-2">
           <div class="flex justify-start">
             <div class="rounded-full mr-2 bg-white">
-              <img src={currentChannelIconUrl} class="o w-12 h-12 rounded-full" />
+              <img src={currentChannelIconUrl} class="w-12 h-12 rounded-full" />
             </div>
 
             <div>
               <h3 class="text-sm text-white">{currentVideoChannel}</h3>
+
               <div class="flex mt-1 justify-start items-center">
                 <a href={`https://www.youtube.com/watch?v=${currentVideoId}`} target="_blank">
-                  <img src={Video} alt="video" class="mr-1" />
+                  <img src={Video} alt="video" class="mr-2" />
                 </a>
 
                 <a href={`https://www.youtube.com/channel/${currentChannelId}`} target="_blank">
-                  <img src={Link} alt="channel" />
+                  <img src={Youtube} alt="channel" />
                 </a>
               </div>
             </div>
           </div>
 
-          <div class="flex items-center">
+          <div>
             <div class="flex justify-between block relative px-2 py-2 bg-gray-900 border border-gray-800 shadow-xl rounded-xl max-w-xs">
+              <button class="mr-6" onClick={onVolumeToggle} type="button">
+                {isMuted ? (
+                  <img src={VolumeX} alt="volume muted" />
+                ) : (
+                  <img src={Volume} alt="volume unmuted" />
+                )}
+              </button>
+
               <button>
                 <img src={Previous} alt="previous" class="mr-1" onClick={onNextSelect} />
               </button>
@@ -93,15 +117,6 @@ export default function EnvironmentList({
                 <img src={Next} alt="next" onClick={onNextSelect} />
               </button>
             </div>
-
-            {/* <div class="flex justify-end">
-              <input
-                id="default-range"
-                type="range"
-                value="50"
-                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-              />
-            </div> */}
           </div>
         </div>
       </div>
