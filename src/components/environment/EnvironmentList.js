@@ -15,6 +15,7 @@ export default function EnvironmentList({
   const [currentVideoChannel, setCurrentVideoChannel] = useState('n/a');
   const [currentVideoId, setCurrentVideoId] = useState();
   const [currentChannelId, setCurrentChannelId] = useState();
+  const [currentChannelIconUrl, setCurrentChannelIconUrl] = useState();
 
   useEffect(() => {
     api.getPlaylistItemInfo(currentPlaylistId).then((response) => {
@@ -23,7 +24,11 @@ export default function EnvironmentList({
       setCurrentVideoId(response.data.items[currentVideoIdx].snippet.resourceId.videoId);
       setCurrentChannelId(response.data.items[currentVideoIdx].snippet.videoOwnerChannelId);
     });
-  }, [currentPlaylistId]);
+
+    api.getChannelInfo(currentChannelId).then((response) => {
+      setCurrentChannelIconUrl(response.data.items[0].snippet.thumbnails.medium.url);
+    });
+  }, [currentPlaylistId, currentChannelId]);
 
   const onPlaylistSelect = (playlistId) => {
     handlePlaylistSelect(playlistId);
@@ -52,7 +57,9 @@ export default function EnvironmentList({
         </div>
 
         <div class="flex justify-start items-center bg-gray-800 p-2">
-          <div class="rounded-full px-5 py-5 mr-2 bg-white"></div>
+          <div class="rounded-full mr-2 bg-white">
+            <img src={currentChannelIconUrl} class="o w-12 h-12 rounded-full" />
+          </div>
 
           <div>
             <h3 class="text-sm text-white">{currentVideoChannel}</h3>
