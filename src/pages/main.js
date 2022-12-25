@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Draggable, { DraggableCore } from 'react-draggable';
 
 import VideoPlayer from '../components/environment/VideoPlayer';
-import EnvironmentList from '../components/environment/EnvironmentList';
 import Timer from '../components/timer/Timer';
 
 export default function Main() {
