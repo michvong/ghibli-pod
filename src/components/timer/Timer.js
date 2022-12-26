@@ -263,7 +263,7 @@ export default function Timer({ handleTimerClick }) {
       <div class="flex justify-between">
         <div class="flex justify-start">
           <h3 class="mr-4 text-xl text-white">timer</h3>
-          <div class="mt-2 flex justify-between gap-1">
+          <div class="flex justify-between items-center gap-1">
             <div class={pomodoroSessions >= 1 ? 'visible' : 'invisible'}>
               <img src={Star} alt="star" />
             </div>
