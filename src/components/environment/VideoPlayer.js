@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 import EnvironmentList from './EnvironmentList';
 import Draggable from 'react-draggable';
 
-export default function VideoPlayer({ isEnvironmentsVisible }) {
+export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsClick }) {
   const [currentPlaylistId, setCurrentPlaylistId] = useState();
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
   const [player, setPlayer] = useState();
@@ -23,7 +23,7 @@ export default function VideoPlayer({ isEnvironmentsVisible }) {
   };
 
   const handleVideoEnd = () => {
-    // setCurrentVideoIdx(currentVideoIdx + 1);
+    setCurrentVideoIdx(currentVideoIdx + 1);
   };
 
   const handlePlaylistSelect = (playlistId) => {
@@ -32,10 +32,12 @@ export default function VideoPlayer({ isEnvironmentsVisible }) {
 
   const handleNextSelect = () => {
     player.nextVideo();
+    setCurrentVideoIdx(currentVideoIdx + 1);
   };
 
   const handlePrevSelect = () => {
     player.previousVideo();
+    setCurrentVideoIdx(currentVideoIdx - 1);
   };
 
   const handleVolumeMute = () => {
@@ -63,6 +65,7 @@ export default function VideoPlayer({ isEnvironmentsVisible }) {
             handlePrevSelect={handlePrevSelect}
             handleVolumeMute={handleVolumeMute}
             handleVolumeUnmute={handleVolumeUnmute}
+            handleEnvironmentsClick={handleEnvironmentsClick}
           />
         </div>
       </Draggable>

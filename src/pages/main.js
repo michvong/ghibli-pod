@@ -33,12 +33,15 @@ export default function Main() {
       />
 
       <div class="absolute">
-        <VideoPlayer isEnvironmentsVisible={isEnvironmentsVisible} />
+        <VideoPlayer
+          isEnvironmentsVisible={isEnvironmentsVisible}
+          handleEnvironmentsClick={handleEnvironmentsClick}
+        />
       </div>
 
       <Draggable>
         <div class={isTimerVisible ? 'visible' : 'hidden'}>
-          <Timer />
+          <Timer handleTimerClick={handleTimerClick} />
         </div>
       </Draggable>
     </div>

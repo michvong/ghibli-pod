@@ -7,7 +7,7 @@ import Star from '../../assets/icons/star.svg';
 
 import NotifSound from '../../assets/audio/bubble_bell.mp3';
 
-export default function Timer() {
+export default function Timer({ handleTimerClick }) {
   const DEFAULT_POMODORO_INPUT_MINUTES = 25;
   const DEFAULT_POMODORO_LENGTH = 25 * 60;
   const DEFAULT_POMODORO_FORMATTED_TIME = '25:00';
@@ -254,6 +254,10 @@ export default function Timer() {
     return formattedMinutes + ':' + pad(formattedSeconds);
   };
 
+  const onMinimize = () => {
+    handleTimerClick();
+  };
+
   return (
     <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-xl max-w-sm">
       <div class="flex justify-between">
@@ -278,7 +282,7 @@ export default function Timer() {
           </div>
         </div>
 
-        <button>
+        <button onClick={onMinimize}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="hover:stroke-gray-400 active:stroke-gray-700"
