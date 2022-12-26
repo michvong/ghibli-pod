@@ -15,6 +15,7 @@ export default function EnvironmentList({
   currentPlaylistId,
   currentVideoIdx,
   handleNextSelect,
+  handlePrevSelect,
   handleVolumeMute,
   handleVolumeUnmute,
 }) {
@@ -34,9 +35,9 @@ export default function EnvironmentList({
     });
 
     api.getChannelInfo(currentChannelId).then((response) => {
-      setCurrentChannelIconUrl(response.data.items[0].snippet.thumbnails.default.url);
+      setCurrentChannelIconUrl(response.data.items[currentVideoIdx].snippet.thumbnails.default.url);
     });
-  }, [currentPlaylistId, currentChannelId]);
+  }, [currentPlaylistId, currentChannelId, currentVideoIdx]);
 
   const onPlaylistSelect = (playlistId) => {
     handlePlaylistSelect(playlistId);
@@ -44,6 +45,10 @@ export default function EnvironmentList({
 
   const onNextSelect = () => {
     handleNextSelect();
+  };
+
+  const onPrevSelect = () => {
+    handlePrevSelect();
   };
 
   const onVolumeToggle = () => {
@@ -80,8 +85,8 @@ export default function EnvironmentList({
 
         <div class="flex justify-between items-center bg-gray-800 p-2">
           <div class="flex justify-start">
-            <div class="rounded-full mr-2 bg-white">
-              <img src={currentChannelIconUrl} class="w-12 h-12 rounded-full" />
+            <div class="rounded-full mr-2 max-w-12 max-h-12 bg-white">
+              <img src={currentChannelIconUrl} class="max-w-12 max-h-12 rounded-full" />
             </div>
 
             <div>
@@ -110,7 +115,7 @@ export default function EnvironmentList({
               </button>
 
               <button>
-                <img src={Previous} alt="previous" class="mr-1" onClick={onNextSelect} />
+                <img src={Previous} alt="previous" class="mr-2" onClick={onPrevSelect} />
               </button>
 
               <button>

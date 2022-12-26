@@ -7,7 +7,6 @@ export default function VideoPlayer({ isEnvironmentsVisible }) {
   const [currentPlaylistId, setCurrentPlaylistId] = useState();
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
   const [player, setPlayer] = useState();
-  // const [isEnvironmentsVisible, setIsEnvironmentsVisible] = useState(false);
 
   const opts = {
     width: window.innerWidth,
@@ -24,8 +23,7 @@ export default function VideoPlayer({ isEnvironmentsVisible }) {
   };
 
   const handleVideoEnd = () => {
-    setCurrentVideoIdx(currentVideoIdx + 1);
-    console.log(currentVideoIdx);
+    // setCurrentVideoIdx(currentVideoIdx + 1);
   };
 
   const handlePlaylistSelect = (playlistId) => {
@@ -34,6 +32,10 @@ export default function VideoPlayer({ isEnvironmentsVisible }) {
 
   const handleNextSelect = () => {
     player.nextVideo();
+  };
+
+  const handlePrevSelect = () => {
+    player.previousVideo();
   };
 
   const handleVolumeMute = () => {
@@ -58,6 +60,7 @@ export default function VideoPlayer({ isEnvironmentsVisible }) {
             currentPlaylistId={currentPlaylistId}
             currentVideoIdx={currentVideoIdx}
             handleNextSelect={handleNextSelect}
+            handlePrevSelect={handlePrevSelect}
             handleVolumeMute={handleVolumeMute}
             handleVolumeUnmute={handleVolumeUnmute}
           />
