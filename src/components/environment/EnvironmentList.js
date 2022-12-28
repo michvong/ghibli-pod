@@ -17,29 +17,19 @@ export default function EnvironmentList({
   handleVolumeMute,
   handleVolumeUnmute,
   handleEnvironmentsClick,
-
-  currentPlaylistId,
-  currentVideoTitle,
   currentVideoChannel,
   currentVideoId,
   currentChannelId,
   currentChannelIconUrl,
-  currentVideoIdx,
-  currentPlaylistLength,
 }) {
   const [isMuted, setIsMuted] = useState(false);
-  const [isNextClicked, setisNextClicked] = useState(false);
 
   const onPlaylistSelect = (playlistId) => {
     handlePlaylistSelect(playlistId);
   };
 
   const onNextSelect = () => {
-    // setisNextClicked(true);
     handleNextSelect();
-    // setCurrentVideoIdx(currentVideoIdx + 1);
-    // if (currentVideoIdx > currentPlaylistLength) {
-    // }
   };
 
   const onPrevSelect = () => {
