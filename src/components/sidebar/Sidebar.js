@@ -3,8 +3,9 @@ import Up from '../../assets/icons/chevron-up.svg';
 import Down from '../../assets/icons/chevron-down.svg';
 import Clock from '../../assets/icons/clock.svg';
 import Image from '../../assets/icons/image.svg';
+import List from '../../assets/icons/list.svg';
 
-export default function Sidebar({ handleTimerClick, handleEnvironmentsClick }) {
+export default function Sidebar({ handleTimerClick, handleEnvironmentsClick, handleToDoClick }) {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const onTimerClick = () => {
@@ -13,6 +14,10 @@ export default function Sidebar({ handleTimerClick, handleEnvironmentsClick }) {
 
   const onEnvironmentsClick = () => {
     handleEnvironmentsClick();
+  };
+
+  const onTodoClick = () => {
+    handleToDoClick();
   };
 
   return (
@@ -54,6 +59,13 @@ export default function Sidebar({ handleTimerClick, handleEnvironmentsClick }) {
             <img src={Image} />
           </button>
           <p class="text-sm">spaces</p>
+        </div>
+
+        <div class="flex flex-col justify-center items-center mt-4">
+          <button onClick={onTodoClick}>
+            <img src={List} />
+          </button>
+          <p class="text-sm">to-do</p>
         </div>
       </div>
     </>
