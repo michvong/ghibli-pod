@@ -91,7 +91,7 @@ export default function EnvironmentList({
 
         <div class="flex justify-between items-center bg-gray-800 p-2">
           <div class="flex justify-start">
-            <div class="rounded-full mr-2 max-w-12 max-h-12 bg-white">
+            <div class="rounded-full mr-2">
               <img src={currentChannelIconUrl} class="max-w-12 max-h-12 rounded-full" />
             </div>
 
