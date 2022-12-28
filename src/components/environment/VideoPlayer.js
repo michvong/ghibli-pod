@@ -17,22 +17,58 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
   const [currentPlaylistLength, setCurrentPlaylistLength] = useState();
 
+  const [isNextClicked, setisNextClicked] = useState(false);
+  const [isPrevClicked, setisPrevClicked] = useState(false);
+
   useEffect(() => {
-    api.getPlaylistItemInfo(currentPlaylistId).then((response) => {
-      // console.log(response);
-      // console.log(currentPlaylistLength);
+    if (isNextClicked) {
+      if (currentVideoIdx + 1 === currentPlaylistLength) {
+        setCurrentVideoIdx(0);
+      } else {
+        setCurrentVideoIdx(currentVideoIdx + 1);
+      }
+      setisNextClicked(false);
+      // console.log(currentVideoIdx);
+    }
+  }, [isNextClicked, currentVideoIdx, currentPlaylistLength]);
 
-      setCurrentVideoTitle(response.data.items[currentVideoIdx].snippet.title);
-      setCurrentVideoChannel(response.data.items[currentVideoIdx].snippet.videoOwnerChannelTitle);
-      setCurrentVideoId(response.data.items[currentVideoIdx].snippet.resourceId.videoId);
-      setCurrentChannelId(response.data.items[currentVideoIdx].snippet.videoOwnerChannelId);
-      setCurrentPlaylistLength(response.data.items.length);
-    });
+  useEffect(() => {
+    if (isPrevClicked) {
+      console.log('useeffect');
+      if (currentVideoIdx === 0) {
+        setCurrentVideoIdx(currentPlaylistLength - 1);
+      } else {
+        setCurrentVideoIdx(currentVideoIdx - 1);
+      }
+      setisPrevClicked(false);
+    }
+  }, [isPrevClicked, currentVideoIdx, currentPlaylistLength]);
 
-    api.getChannelInfo(currentChannelId).then((response) => {
-      setCurrentChannelIconUrl(response.data.items[currentVideoIdx].snippet.thumbnails.default.url);
-    });
-  }, [currentPlaylistId, currentChannelId, currentVideoIdx]);
+  useEffect(() => {
+    api
+      .getPlaylistItemInfo(currentPlaylistId)
+      .then((response) => {
+        setCurrentVideoTitle(response.data.items[currentVideoIdx].snippet.title);
+        setCurrentVideoChannel(response.data.items[currentVideoIdx].snippet.videoOwnerChannelTitle);
+        setCurrentVideoId(response.data.items[currentVideoIdx].snippet.resourceId.videoId);
+        setCurrentChannelId(response.data.items[currentVideoIdx].snippet.videoOwnerChannelId);
+        setCurrentPlaylistLength(response.data.items.length);
+      })
+      .catch((err) => {});
+  }, [currentPlaylistId, currentVideoIdx]);
+
+  useEffect(() => {
+    console.log(currentChannelId);
+    api
+      .getChannelInfo(currentChannelId)
+      .then((response) => {
+        console.log(response);
+        setCurrentChannelIconUrl(response.data.items[0].snippet.thumbnails.default.url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [currentChannelId, currentVideoIdx]);
 
   const opts = {
     width: window.innerWidth,
@@ -53,21 +89,21 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
     if (currentVideoIdx + 1 === currentPlaylistLength) {
       setCurrentVideoIdx(0);
     }
-    // console.log(currentVideoIdx + ' ' + currentVideoChannel);
   };
 
   const handlePlaylistSelect = (playlistId) => {
     setCurrentPlaylistId(playlistId);
+    player.loadPlaylist(playlistId);
     setCurrentVideoIdx(0);
-    // console.log(currentVideoIdx);
   };
 
   const handleNextSelect = () => {
+    setisNextClicked(true);
     player.nextVideo();
-    handleVideoEnd();
   };
 
   const handlePrevSelect = () => {
+    setisPrevClicked(true);
     player.previousVideo();
   };
 

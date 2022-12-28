@@ -28,12 +28,14 @@ export default function EnvironmentList({
   currentPlaylistLength,
 }) {
   const [isMuted, setIsMuted] = useState(false);
+  const [isNextClicked, setisNextClicked] = useState(false);
 
   const onPlaylistSelect = (playlistId) => {
     handlePlaylistSelect(playlistId);
   };
 
   const onNextSelect = () => {
+    // setisNextClicked(true);
     handleNextSelect();
     // setCurrentVideoIdx(currentVideoIdx + 1);
     // if (currentVideoIdx > currentPlaylistLength) {
