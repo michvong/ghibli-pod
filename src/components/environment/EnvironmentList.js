@@ -12,33 +12,22 @@ import VolumeX from '../../assets/icons/volume-x.svg';
 
 export default function EnvironmentList({
   handlePlaylistSelect,
-  currentPlaylistId,
-  currentVideoIdx,
   handleNextSelect,
   handlePrevSelect,
   handleVolumeMute,
   handleVolumeUnmute,
   handleEnvironmentsClick,
+
+  currentPlaylistId,
+  currentVideoTitle,
+  currentVideoChannel,
+  currentVideoId,
+  currentChannelId,
+  currentChannelIconUrl,
+  currentVideoIdx,
+  currentPlaylistLength,
 }) {
   const [isMuted, setIsMuted] = useState(false);
-  const [currentVideoTitle, setCurrentVideoTitle] = useState();
-  const [currentVideoChannel, setCurrentVideoChannel] = useState('n/a');
-  const [currentVideoId, setCurrentVideoId] = useState();
-  const [currentChannelId, setCurrentChannelId] = useState();
-  const [currentChannelIconUrl, setCurrentChannelIconUrl] = useState();
-
-  useEffect(() => {
-    api.getPlaylistItemInfo(currentPlaylistId).then((response) => {
-      setCurrentVideoTitle(response.data.items[currentVideoIdx].snippet.title);
-      setCurrentVideoChannel(response.data.items[currentVideoIdx].snippet.videoOwnerChannelTitle);
-      setCurrentVideoId(response.data.items[currentVideoIdx].snippet.resourceId.videoId);
-      setCurrentChannelId(response.data.items[currentVideoIdx].snippet.videoOwnerChannelId);
-    });
-
-    api.getChannelInfo(currentChannelId).then((response) => {
-      setCurrentChannelIconUrl(response.data.items[currentVideoIdx].snippet.thumbnails.default.url);
-    });
-  }, [currentPlaylistId, currentChannelId, currentVideoIdx]);
 
   const onPlaylistSelect = (playlistId) => {
     handlePlaylistSelect(playlistId);
@@ -46,6 +35,9 @@ export default function EnvironmentList({
 
   const onNextSelect = () => {
     handleNextSelect();
+    // setCurrentVideoIdx(currentVideoIdx + 1);
+    // if (currentVideoIdx > currentPlaylistLength) {
+    // }
   };
 
   const onPrevSelect = () => {

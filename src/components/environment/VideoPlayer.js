@@ -2,11 +2,37 @@ import React, { useEffect, useState } from 'react';
 import YouTube from 'react-youtube';
 import EnvironmentList from './EnvironmentList';
 import Draggable from 'react-draggable';
+import api from '../../services/api';
 
 export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsClick }) {
   const [currentPlaylistId, setCurrentPlaylistId] = useState();
-  const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
   const [player, setPlayer] = useState();
+
+  const [currentVideoTitle, setCurrentVideoTitle] = useState();
+  const [currentVideoChannel, setCurrentVideoChannel] = useState('n/a');
+  const [currentVideoId, setCurrentVideoId] = useState();
+  const [currentChannelId, setCurrentChannelId] = useState();
+  const [currentChannelIconUrl, setCurrentChannelIconUrl] = useState();
+
+  const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
+  const [currentPlaylistLength, setCurrentPlaylistLength] = useState();
+
+  useEffect(() => {
+    api.getPlaylistItemInfo(currentPlaylistId).then((response) => {
+      // console.log(response);
+      // console.log(currentPlaylistLength);
+
+      setCurrentVideoTitle(response.data.items[currentVideoIdx].snippet.title);
+      setCurrentVideoChannel(response.data.items[currentVideoIdx].snippet.videoOwnerChannelTitle);
+      setCurrentVideoId(response.data.items[currentVideoIdx].snippet.resourceId.videoId);
+      setCurrentChannelId(response.data.items[currentVideoIdx].snippet.videoOwnerChannelId);
+      setCurrentPlaylistLength(response.data.items.length);
+    });
+
+    api.getChannelInfo(currentChannelId).then((response) => {
+      setCurrentChannelIconUrl(response.data.items[currentVideoIdx].snippet.thumbnails.default.url);
+    });
+  }, [currentPlaylistId, currentChannelId, currentVideoIdx]);
 
   const opts = {
     width: window.innerWidth,
@@ -24,20 +50,25 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
 
   const handleVideoEnd = () => {
     setCurrentVideoIdx(currentVideoIdx + 1);
+    if (currentVideoIdx + 1 === currentPlaylistLength) {
+      setCurrentVideoIdx(0);
+    }
+    // console.log(currentVideoIdx + ' ' + currentVideoChannel);
   };
 
   const handlePlaylistSelect = (playlistId) => {
     setCurrentPlaylistId(playlistId);
+    setCurrentVideoIdx(0);
+    // console.log(currentVideoIdx);
   };
 
   const handleNextSelect = () => {
     player.nextVideo();
-    setCurrentVideoIdx(currentVideoIdx + 1);
+    handleVideoEnd();
   };
 
   const handlePrevSelect = () => {
     player.previousVideo();
-    setCurrentVideoIdx(currentVideoIdx - 1);
   };
 
   const handleVolumeMute = () => {
@@ -66,6 +97,11 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
             handleVolumeMute={handleVolumeMute}
             handleVolumeUnmute={handleVolumeUnmute}
             handleEnvironmentsClick={handleEnvironmentsClick}
+            currentVideoTitle={currentVideoTitle}
+            currentVideoChannel={currentVideoChannel}
+            currentVideoId={currentVideoId}
+            currentChannelIconUrl={currentChannelIconUrl}
+            currentPlaylistLength={currentPlaylistLength}
           />
         </div>
       </Draggable>
