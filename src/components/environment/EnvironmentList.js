@@ -138,7 +138,7 @@ export default function EnvironmentList({
               </button>
 
               <button class="mr-2" onClick={onVideoToggle} n>
-                {isPlaying ? <img src={Pause} alt="pause" /> : <img src={Play} alt="play" />}
+                {isPlaying ? <img src={Play} alt="pause" /> : <img src={Pause} alt="play" />}
               </button>
 
               <button>
