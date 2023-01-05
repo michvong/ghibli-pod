@@ -115,6 +115,14 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
     player.unMute();
   };
 
+  const handleVideoToggle = () => {
+    if (player.getPlayerState() === 2) {
+      player.playVideo();
+    } else {
+      player.pauseVideo();
+    }
+  };
+
   return (
     <div>
       <div class="absolute pointer-events-none">
@@ -133,6 +141,7 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
             handleVolumeMute={handleVolumeMute}
             handleVolumeUnmute={handleVolumeUnmute}
             handleEnvironmentsClick={handleEnvironmentsClick}
+            handleVideoToggle={handleVideoToggle}
             currentVideoTitle={currentVideoTitle}
             currentVideoChannel={currentVideoChannel}
             currentVideoId={currentVideoId}

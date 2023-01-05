@@ -6,6 +6,8 @@ import { ENVIRONMENTS } from './environmentConstants';
 import Video from '../../assets/icons/video.svg';
 import Youtube from '../../assets/icons/youtube.svg';
 import Next from '../../assets/icons/skip-forward.svg';
+import Play from '../../assets/icons/play.svg';
+import Pause from '../../assets/icons/pause.svg';
 import Previous from '../../assets/icons/skip-back.svg';
 import Volume from '../../assets/icons/volume-1.svg';
 import VolumeX from '../../assets/icons/volume-x.svg';
@@ -17,12 +19,14 @@ export default function EnvironmentList({
   handleVolumeMute,
   handleVolumeUnmute,
   handleEnvironmentsClick,
+  handleVideoToggle,
   currentVideoChannel,
   currentVideoId,
   currentChannelId,
   currentChannelIconUrl,
 }) {
   const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const onPlaylistSelect = (playlistId) => {
     handlePlaylistSelect(playlistId);
@@ -48,6 +52,15 @@ export default function EnvironmentList({
 
   const onMinimize = () => {
     handleEnvironmentsClick();
+  };
+
+  const onVideoToggle = () => {
+    if (!isPlaying) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+    handleVideoToggle();
   };
 
   return (
@@ -122,6 +135,10 @@ export default function EnvironmentList({
 
               <button>
                 <img src={Previous} alt="previous" class="mr-2" onClick={onPrevSelect} />
+              </button>
+
+              <button class="mr-2" onClick={onVideoToggle} n>
+                {isPlaying ? <img src={Pause} alt="pause" /> : <img src={Play} alt="play" />}
               </button>
 
               <button>
