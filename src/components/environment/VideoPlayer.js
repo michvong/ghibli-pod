@@ -28,7 +28,6 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
         setCurrentVideoIdx(currentVideoIdx + 1);
       }
       setisNextClicked(false);
-      // console.log(currentVideoIdx);
     }
   }, [isNextClicked, currentVideoIdx, currentPlaylistLength]);
 
@@ -74,7 +73,7 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
     width: window.innerWidth,
     height: window.innerHeight,
     playerVars: {
-      autoplay: 1, // video should auto-play when loaded
+      autoplay: 1,
       // controls: 0, // this doesn't work if autoplay is on
       // disablekb: 1,
       modestbranding: 1,
