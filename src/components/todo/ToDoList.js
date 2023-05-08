@@ -8,7 +8,7 @@ export default function ToDoList({ handleToDoClick }) {
     handleToDoClick();
   };
 
-  const handleTaskClick = (index) => {
+  const handleNewTaskClick = (index) => {
     const newTasks = [...tasks];
     newTasks[index].completed = !newTasks[index].completed;
     setTasks(newTasks);
@@ -59,7 +59,7 @@ export default function ToDoList({ handleToDoClick }) {
                 <Checkbox
                   class="p-3"
                   checked={task.completed}
-                  onChange={() => handleTaskClick(index)}
+                  onChange={() => handleNewTaskClick(index)}
                 />
 
                 <input
