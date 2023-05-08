@@ -74,8 +74,6 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
     height: window.innerHeight,
     playerVars: {
       autoplay: 1,
-      // controls: 0, // this doesn't work if autoplay is on
-      // disablekb: 1,
       modestbranding: 1,
       list: currentPlaylistId,
       loop: 1,

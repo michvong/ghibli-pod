@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="main" element={<Main />}></Route>
+        <Route path="/" element={<Main />}></Route>
         <Route path="to-do" element={<ToDoList />}></Route>
       </Routes>
     </BrowserRouter>

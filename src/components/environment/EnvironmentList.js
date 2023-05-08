@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import api from '../../services/api';
+import React, { useState } from 'react';
 import Environment from './Environment';
 import { ENVIRONMENTS } from './environmentConstants';
 
