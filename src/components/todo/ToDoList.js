@@ -48,21 +48,20 @@ export default function ToDoList({ handleToDoClick }) {
           </button>
         </div>
 
-        <div class="flex flex-col mt-3 mb-4 hover:scrollbar-thin scrollbar-thumb-gray-700 scrollbar-thumb-rounded-md scrollbar-track-rounded-full overflow-y-scroll overflow-hidden">
-          <div class="mr-4">
+        <div class="flex flex-col mt-3 mb-4">
+          <div>
             {tasks.map((task, index) => (
-              <div key={index} class="flex items-center">
+              <div key={index} class="flex justify-between items-center">
                 <Checkbox
                   class="p-3"
                   checked={task.completed}
                   onChange={() => handleTaskClick(index)}
-                  color="indigo"
                 />
 
                 <input
                   type="text"
                   placeholder="enter your task"
-                  class={`mr-3 px-2 py-0.5 bg-gray-800 w-full rounded-md text-white/50 text-base ${
+                  class={`truncate mr-3 px-2 py-0.5 bg-gray-800 w-full rounded-md text-white/50 text-base ${
                     task.completed ? 'line-through text-gray-400' : ''
                   }`}
                   value={newTask}
@@ -80,6 +79,7 @@ export default function ToDoList({ handleToDoClick }) {
                     stroke-width="1"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    class="hover:stroke-red-600"
                   >
                     <polyline points="3 6 5 6 21 6"></polyline>
                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -97,7 +97,7 @@ export default function ToDoList({ handleToDoClick }) {
                 setNewTask('');
               }}
             >
-              + <span class="text-white/50 mr-1.5">add a new task</span>
+              + <span class="text-white/50 mr-2">add a new task</span>
             </button>
           </div>
         </div>
