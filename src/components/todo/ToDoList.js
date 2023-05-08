@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Checkbox } from '@material-tailwind/react';
 
 export default function ToDoList({ handleToDoClick }) {
-  const [newTask, setNewTask] = useState('');
-
   const [tasks, setTasks] = useState([]);
 
   const onMinimize = () => {
@@ -20,6 +18,12 @@ export default function ToDoList({ handleToDoClick }) {
     const newTasks = [...tasks];
     newTasks.splice(index, 1);
     setTasks(newTasks);
+  };
+
+  const handleTaskNameChange = (index, newName) => {
+    const updatedTasks = tasks.slice();
+    updatedTasks[index].task = newName;
+    setTasks(updatedTasks);
   };
 
   return (
@@ -64,8 +68,7 @@ export default function ToDoList({ handleToDoClick }) {
                   class={`truncate mr-3 px-2 py-0.5 bg-gray-800 w-full rounded-md text-white/50 text-base ${
                     task.completed ? 'line-through text-gray-400' : ''
                   }`}
-                  value={newTask}
-                  onChange={(e) => setNewTask(e.target.value)}
+                  onChange={(e) => handleTaskNameChange(index, e)}
                 />
 
                 <button onClick={() => handleDeleteClick(index)}>
@@ -93,8 +96,7 @@ export default function ToDoList({ handleToDoClick }) {
             <button
               class="flex justify-between pl-4 py-1 w-full rounded-lg text-white rounded-md hover:bg-white/10 text-white/50 text-base"
               onClick={() => {
-                setTasks([...tasks, { task: newTask, completed: false }]);
-                setNewTask('');
+                setTasks([...tasks, { task: '', completed: false }]);
               }}
             >
               + <span class="text-white/50 mr-2">add a new task</span>
