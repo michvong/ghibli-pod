@@ -4,7 +4,6 @@ import Down from '../../assets/icons/chevron-down.svg';
 import Clock from '../../assets/icons/clock.svg';
 import Image from '../../assets/icons/image.svg';
 import List from '../../assets/icons/list.svg';
-import Info from '../../assets/icons/help.svg';
 
 export default function Sidebar({ handleTimerClick, handleEnvironmentsClick, handleToDoClick }) {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -69,13 +68,6 @@ export default function Sidebar({ handleTimerClick, handleEnvironmentsClick, han
             </button>
             <p class="text-sm">to-do</p>
           </div>
-        </div>
-
-        <div class="flex flex-col justify-center items-center mt-4">
-          <button>
-            <img src={Info} />
-          </button>
-          <p class="text-sm">info</p>
         </div>
       </div>
     </>
