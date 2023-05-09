@@ -36,7 +36,7 @@ export default function Main() {
   };
 
   return (
-    <div class="h-screen w-screen overscroll-none">
+    <div class="max-h-screen max-w-screen overscroll-none">
       <Sidebar
         handleTimerClick={handleTimerClick}
         handleEnvironmentsClick={handleEnvironmentsClick}

@@ -64,7 +64,7 @@ export default function EnvironmentList({
   };
 
   return (
-    <div class>
+    <div class="overscroll-none">
       <div class="block relative px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-xl max-w-xs">
         <div class="flex justify-between">
           <div class="flex justify-start">
