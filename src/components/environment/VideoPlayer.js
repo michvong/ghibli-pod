@@ -121,15 +121,15 @@ export default function VideoPlayer({ isEnvironmentsVisible, handleEnvironmentsC
   };
 
   return (
-    <div>
-      <div class="absolute pointer-events-none">
+    <div class="overscroll-none">
+      <div class="absolute pointer-events-none overscroll-none">
         <YouTube opts={opts} onEnd={handleVideoEnd} onReady={(event) => setPlayer(event.target)} />
       </div>
 
       <Draggable>
         <div class={isEnvironmentsVisible ? 'visible' : 'hidden'}>
           <EnvironmentList
-            class="absolute"
+            class="overscroll-none absolute"
             handlePlaylistSelect={handlePlaylistSelect}
             currentPlaylistId={currentPlaylistId}
             currentVideoIdx={currentVideoIdx}

@@ -259,7 +259,7 @@ export default function Timer({ handleTimerClick }) {
   };
 
   return (
-    <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-xl max-w-sm">
+    <div class="block px-5 py-5 bg-gray-900 border border-gray-800 shadow-xl rounded-xl max-w-sm overscroll-none">
       <div class="flex justify-between">
         <div class="flex justify-start">
           <h3 class="mr-4 text-xl text-white">timer</h3>
