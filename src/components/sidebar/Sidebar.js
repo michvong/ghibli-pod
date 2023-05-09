@@ -6,8 +6,6 @@ import Image from '../../assets/icons/image.svg';
 import List from '../../assets/icons/list.svg';
 import Info from '../../assets/icons/help.svg';
 
-import { Popover, PopoverHandler, PopoverContent } from '@material-tailwind/react';
-
 export default function Sidebar({ handleTimerClick, handleEnvironmentsClick, handleToDoClick }) {
   const [showSidebar, setShowSidebar] = useState(false);
 
