@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/ghibli-pod/static/css/main.07134805.css",
+    "main.js": "/ghibli-pod/static/js/main.4dbfb517.js",
+    "static/js/787.b24f764f.chunk.js": "/ghibli-pod/static/js/787.b24f764f.chunk.js",
+    "static/media/dragon.png": "/ghibli-pod/static/media/dragon.b2c574b29f4214aa8e54.png",
+    "static/media/water_wave.png": "/ghibli-pod/static/media/water_wave.a1e7d4e715e2cdb9ac58.png",
+    "static/media/bubble_bell.mp3": "/ghibli-pod/static/media/bubble_bell.8262e0dc96289403ab8a.mp3",
+    "static/media/fire.png": "/ghibli-pod/static/media/fire.91d4531ec497f761be13.png",
+    "static/media/sparkles.png": "/ghibli-pod/static/media/sparkles.728b792207f71b356176.png",
+    "index.html": "/ghibli-pod/index.html",
+    "static/media/youtube.svg": "/ghibli-pod/static/media/youtube.0507805765eef910b9d883fb6e11fcbc.svg",
+    "static/media/list.svg": "/ghibli-pod/static/media/list.5bfa494d42c4501dae61bc35c32ad898.svg",
+    "static/media/star.svg": "/ghibli-pod/static/media/star.97d4f37e5a34a82851275c3558711bb7.svg",
+    "static/media/image.svg": "/ghibli-pod/static/media/image.464e9eff2acbae7ae6f71bbfdda457a8.svg",
+    "static/media/video.svg": "/ghibli-pod/static/media/video.50a0404974bac263d3b02cccbcb1bc96.svg",
+    "static/media/volume-1.svg": "/ghibli-pod/static/media/volume-1.2e4eb07c8cfb4094da0159e1eff2ca9b.svg",
+    "static/media/pause.svg": "/ghibli-pod/static/media/pause.6cbab547bde351427d2eb7806e53b81f.svg",
+    "static/media/skip-back.svg": "/ghibli-pod/static/media/skip-back.45da512c8bd0f94c0946a6fcafbfc860.svg",
+    "static/media/skip-forward.svg": "/ghibli-pod/static/media/skip-forward.64518e45d23c5f730d27c5085c07d0d5.svg",
+    "static/media/clock.svg": "/ghibli-pod/static/media/clock.e24f858818277a72f8b8e19ab966f5e4.svg",
+    "static/media/volume-x.svg": "/ghibli-pod/static/media/volume-x.3f233e92a647d156dd81bf35f9652d81.svg",
+    "static/media/play.svg": "/ghibli-pod/static/media/play.2926a561b63bc1e56d176718b9683744.svg",
+    "static/media/chevron-up.svg": "/ghibli-pod/static/media/chevron-up.61fda25172366b5b1a1ff70f3160abd4.svg",
+    "static/media/chevron-down.svg": "/ghibli-pod/static/media/chevron-down.92cc2012439ed344a8e1c47dc697e48e.svg",
+    "main.07134805.css.map": "/ghibli-pod/static/css/main.07134805.css.map",
+    "main.4dbfb517.js.map": "/ghibli-pod/static/js/main.4dbfb517.js.map",
+    "787.b24f764f.chunk.js.map": "/ghibli-pod/static/js/787.b24f764f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07134805.css",
+    "static/js/main.4dbfb517.js"
+  ]
+}
